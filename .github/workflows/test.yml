@@ -1,0 +1,59 @@
+#
+# @Github: https://github.com/Certseeds/CS203_DSAA_template_java
+# @Organization: SUSTech
+# @Author: nanoseeds
+# @Date: 2020-07-27 22:08:31
+# @LastEditors: nanoseeds
+# @LastEditTime: 2020-07-27 23:10:08
+
+name: test for dev
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the dev branch
+on:
+  push:
+    branches: [ dev ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test:
+    name: test dev
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      # ensure the path and files of project
+      - name: ensure the path and files of project
+        run: |
+          echo $(pwd)
+          ls -la
+          sudo apt install tree
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1.4.0
+        with:
+        # The Java version to make available on the path. Takes a whole or semver Java version, or 1.x syntax (e.g. 1.8 => Java 8.x). Early access versions can be specified in the form of e.g. 14-ea, 14.0.0-ea, or 14.0.0-ea.28
+            java-version: 11
+      - name: Use java and javac
+        run: javac --version; java --version
+      
+      - name: run script
+        working-directory: ./script
+        run: javac ./file_producer.java; java file_producer
+
+      - name: run the tree
+        run: tree
+
+      - name: Run a multi-line script
+        run: |
+          echo $(pwd)
+          ls -la
+  # This workflow contains a single job called "build"
+
+

@@ -16,6 +16,17 @@ public class Redirect {
         this.data_path = data_path;
     }
 
+    public void set_path(String input_path) throws FileNotFoundException {
+        set_path(input_path, "");
+    }
+
+    public void set_path(String input_path, String output_path) throws FileNotFoundException {
+        input(input_path);
+        if (!output_path.equals("")) {
+            output(output_path);
+        }
+    }
+
     public void input(String input_path) throws FileNotFoundException {
         FileInputStream fis = new FileInputStream(data_path + input_path);
         System.setIn(fis);
