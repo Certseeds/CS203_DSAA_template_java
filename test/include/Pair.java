@@ -1,17 +1,37 @@
+package include;
+
+public class Pair<T, U> {
+
+    private final T first;
+    private final U second;
+
+    public Pair(T first, U second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public T getFirst() {
+        return first;
+    }
+
+    public U getSecond() {
+        return second;
+    }
+}
 /**
- * @Github: https://github.com/%1$s/%2$s
+ * @Github: https://github.com/Certseeds/CS203_DSAA_templalte_java
  * @Organization: SUSTech
- * @Author: %3$s
- * @Date: %4$s
- * @LastEditors: %3$s
+ * @Author: nanoseeds
+ * @Date: 2020-07-28 22:25:27
+ * @LastEditors: nanoseeds
  * @LICENSE: MIT
  */
 /*
 MIT License
 
-%2$s
+CS203_DSAA_templalte_java 
 
-Copyright (C) %5$s %3$s
+Copyright (C) 2020  nanoseeds
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

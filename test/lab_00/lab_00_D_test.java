@@ -14,10 +14,9 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class lab_00_B_test {
-
+public class lab_00_D_test {
     private static final String[] init_String = new String[0];
-    private static final String DATA_PATH = "test/lab_00/lab_00_B_data/";
+    private static final String DATA_PATH = "test/lab_00/lab_00_D_data/";
     private static long begin_time;
     private static InputStream System_in;
     private static PrintStream System_out;
@@ -33,65 +32,44 @@ public class lab_00_B_test {
         redirect = new Redirect(DATA_PATH);
     }
 
-    @Order(0)
-    @Test
-    public void test_0() {
-        for (int i = 0; i < 114; i++) {
-            int x = random.nextInt(0x7777);
-            assertEquals(lab_00_B.brute_force(x), lab_00_B.cal(x));
-        }
-    }
-
-    @Order(1)
-    @Test
-    public void test_2() throws IOException {
-        assertEquals(1, lab_00_B.cal(1));
-
-        assertEquals(4, lab_00_B.cal(2));
-
-        assertEquals(38 * 115 * 58, lab_00_B.cal(114));
-    }
-
-    @Order(2)
-    @Test
-    public void test_3() throws IOException {
-        for (int i = 1; i <= 3; i++) {
-            redirect.set_path(String.format("0%d.data.in", i), String.format("0%d.test.out", i));
-            lab_00_B.output(lab_00_B.cal_warpper(lab_00_B.read()));
-            Pair<String, String> p = redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
-            assertEquals(p.getFirst().length(), p.getSecond().length());
-            assertEquals(p.getFirst(), p.getSecond());
-        }
-        for (int i = 1; i <= 3; i++) {
-            redirect.set_path(String.format("0%d.data.in", i), String.format("0%d.test.out", i));
-            lab_00_B.output(lab_00_B.cal_warpper(lab_00_B.reader()));
-            Pair<String, String> p = redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
-            assertEquals(p.getFirst().length(), p.getSecond().length());
-            assertEquals(p.getFirst(), p.getSecond());
-        }
-    }
-
     @AfterAll
     public static void last_one() {
         System.setIn(System_in);
         System.setOut(System_out);
         System.out.println(String.format("cost %d ms", System.currentTimeMillis() - begin_time));
     }
+
+    @Order(1)
+    @Test
+    public void test_01() throws IOException {
+        redirect.set_path("01.data.in");
+        lab_00_D.cal(lab_00_D.read());
+    }
+
+    @Order(2)
+    @Test
+    public void test_02() throws IOException {
+        redirect.set_path("01.data.in", "01.test.out");
+        lab_00_D.main(init_String);
+        Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out");
+        assertEquals(p.getFirst().length(), p.getSecond().length());
+        assertEquals(p.getFirst(), p.getSecond());
+    }
 }
 /**
- * @Github: https://github.com/Certseeds/CS203_DSAA_template_java
+ * @Github: https://github.com/Certseeds/CS203_DSAA_templalte_java
  * @Organization: SUSTech
- * @Author: sunzhongxia
- * @Date: 2020-07-28 12:14:23
- * @LastEditors: sunzhongxia
+ * @Author: nanoseeds
+ * @Date: 2020-07-28 23:04:38
+ * @LastEditors: nanoseeds
  * @LICENSE: MIT
  */
 /*
 MIT License
 
-CS203_DSAA_template_java 
+CS203_DSAA_templalte_java 
 
-Copyright (C) 2020  sunzhongxia
+Copyright (C) 2020  nanoseeds
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -3,34 +3,86 @@ package lab_00;
 import include.Reader;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class lab_00_C {
     private enum COLOR {
         uncolor, red, black
     }
+    // uncolor is the first so it's default when init array.
 
-    public static long[] read() {
+    public static int[][] read() {
         Scanner input = new Scanner(System.in);
-        int test_number = 0;
-        test_number = input.nextInt();
-        long[] will_return = new long[test_number];
-        for (int i = 0; i < will_return.length; i++) {
-            will_return[i] = input.nextInt();
+        int node_number = input.nextInt();
+        int[][] will_return = new int[node_number][];
+        for (int i = 0; i < node_number; i++) {
+            int connects = input.nextInt();
+            will_return[i] = new int[connects];
+            for (int j = 0; j < connects; j++) {
+                will_return[i][j] = input.nextInt();
+            }
         }
         return will_return;
     }
 
-    public static long[] reader() throws IOException {
+    public static int[][] reader() throws IOException {
         Reader input = new Reader();
-        int test_number = input.nextInt();
-        long[] will_return = new long[test_number];
-        for (int i = 0; i < will_return.length; i++) {
-            will_return[i] = input.nextInt();
+        int node_number = input.nextInt();
+        int[][] will_return = new int[node_number][];
+        for (int i = 0; i < node_number; i++) {
+            int connects = input.nextInt();
+            will_return[i] = new int[connects];
+            for (int j = 0; j < connects; j++) {
+                will_return[i][j] = input.nextInt();
+            }
         }
         return will_return;
     }
 
+    public static void main(String[] args) {
+        int[][] graph = read();
+        boolean result = cal(graph);
+        output(result);
+    }
+
+    static boolean cal(int[][] graph) {
+        int node_number = graph.length;
+        COLOR[] color_vec = new COLOR[node_number];
+        Arrays.fill(color_vec, COLOR.uncolor);
+        Queue<Integer> que = new LinkedList<>();
+        for (int i = 0; i < node_number; i++) {
+            if (graph[i].length != 0 && color_vec[i] == COLOR.uncolor) {
+                color_vec[i] = COLOR.red;
+                que = new LinkedList<>();
+                que.add(i);
+                while (!que.isEmpty()) {
+                    int head = que.remove();
+                    COLOR color_head = color_vec[head];
+                    COLOR next_color = (color_head == COLOR.red) ? COLOR.black : COLOR.red;
+                    for (int j : graph[head]) {
+                        if (color_vec[j] == COLOR.uncolor) {
+                            color_vec[j] = next_color;
+                            que.add(j);
+                        } else if (color_vec[j] == color_head) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    static void output(boolean data) {
+        if (data) {
+            System.out.println("\"PÖSSiBLE\"");
+        } else {
+            System.out.println("\"lMP0SSlBLE\"");
+        }
+    }
 }
 /**
  * @Github: https://github.com/Certseeds/CS203_DSAA_template_java

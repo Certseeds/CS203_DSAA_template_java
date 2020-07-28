@@ -1,16 +1,18 @@
 package lab_00;
 
+import include.Pair;
 import include.Redirect;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class lab_00_A_test {
     private static final String[] init_String = new String[0];
@@ -45,11 +47,16 @@ public class lab_00_A_test {
     public void test_2() throws IOException {
         redirect.set_path("01.data.in", "01.test.out");
         lab_00_A.output(lab_00_A.cal(lab_00_A.read()));
-        assertTrue(redirect.compare_double("01.test.out", "01.data.out"));
+        Pair<String, String> p = redirect.compare_double("01.test.out", "01.data.out");
+        assertEquals(p.getFirst().length(), p.getSecond().length());
+        assertEquals(p.getFirst(), p.getSecond());
+
 
         redirect.set_path("01.data.in", "01.test.out");
         lab_00_A.output(lab_00_A.cal(lab_00_A.reader()));
-        assertTrue(redirect.compare_double("01.test.out", "01.data.out"));
+        p = redirect.compare_double("01.test.out", "01.data.out");
+        assertEquals(p.getFirst().length(), p.getSecond().length());
+        assertEquals(p.getFirst(), p.getSecond());
     }
 
     @Order(2)

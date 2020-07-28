@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
-import java.util.Objects;
 
 public class Redirect {
     private final String data_path;
@@ -38,10 +41,12 @@ public class Redirect {
         System.setOut(ps);
     }
 
-    public boolean compare_double(String expected, String actual) {
-        File file1 = new File(data_path + expected);
-        File file2 = new File(data_path + actual);
-        return Objects.equals(getFileMD5(file1), getFileMD5(file2));
+    public Pair<String, String> compare_double(String expected, String actual) throws IOException {
+        byte[] file1Bytes = Files.readAllBytes(Paths.get(data_path + expected));
+        byte[] file2Bytes = Files.readAllBytes(Paths.get(data_path + actual));
+        String file1 = new String(file1Bytes, StandardCharsets.UTF_8);
+        String file2 = new String(file2Bytes, StandardCharsets.UTF_8);
+        return new Pair<>(file1, file2);
     }
 
     public String getFileMD5(File file) {

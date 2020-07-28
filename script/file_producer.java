@@ -26,8 +26,8 @@ public class file_producer {
     private static final String[] labs =
             {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15"};
     private static final String[] problem_order = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-    //        String[] labs = {"01"};
-    //        String[] problem_order = {"A"};
+    //    private static final String[] labs = {"01"};
+    //    private static final String[] problem_order = {"A"};
     private static final String[] test_datas = {"01", "02", "03"};
 
     public static void main(String[] args) throws IOException {
@@ -60,14 +60,14 @@ public class file_producer {
              FileWriter fw2 = new FileWriter(test, true);) {
             fw1.write(String.format(source_code_template, lab_number, problem_order));
             fw2.write(String.format(test_code_template, lab_number, problem_order));
-            fw1.write(String.format(file_header_template, GITHUB_USER, USER, REPO_NAME, YEAR, CREATE_TIME));
-            fw2.write(String.format(file_header_template, GITHUB_USER, USER, REPO_NAME, YEAR, CREATE_TIME));
+            fw1.write(String.format(file_header_template, GITHUB_USER, USER, REPO_NAME, CREATE_TIME, YEAR));
+            fw2.write(String.format(file_header_template, GITHUB_USER, USER, REPO_NAME, CREATE_TIME, YEAR));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void try_make_data_dir(String lab_number, String problem_order) {
+    private static void try_make_data_dir(String lab_number, String problem_order) throws IOException {
         File test_path = new File(String.format(TEST_DATA_PATH, lab_number, problem_order));
         if (!test_path.exists()) {
             test_path.mkdir();

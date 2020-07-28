@@ -8,14 +8,14 @@ import java.util.Scanner;
 public class lab_00_B {
     public static long[] read() {
         Scanner input = new Scanner(System.in);
-        int test_number = 0;
-        test_number = input.nextInt();
+        int test_number = input.nextInt();
         long[] will_return = new long[test_number];
-        for (int i = 0; i < will_return.length; i++) {
+        for (int i = 0; i < test_number; i++) {
             will_return[i] = input.nextInt();
         }
         return will_return;
     }
+
     public static long[] reader() throws IOException {
         Reader Reader = new Reader();
         int test_number = Reader.nextInt();
@@ -49,7 +49,8 @@ public class lab_00_B {
 
     static void output(long[] nums) {
         for (long num : nums) {
-            System.out.println(num);
+            System.out.print(num);
+            System.out.print('\n');
         }
     }
 
