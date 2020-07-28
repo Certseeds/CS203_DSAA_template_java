@@ -78,7 +78,7 @@ public class lab_00_C {
 
     static void output(boolean data) {
         if (data) {
-            System.out.println("\"PÖSSiBLE\"");
+            System.out.println("\"PoSSiBLE\"");
         } else {
             System.out.println("\"lMP0SSlBLE\"");
         }

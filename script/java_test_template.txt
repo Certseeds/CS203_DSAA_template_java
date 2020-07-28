@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.*;
 import java.util.Random;
 
-public class lab_%1$s_%2$s_test {
+public class lab_%1$s_%2$s_Test {
     private static final String[] init_String = new String[0];
     private static final String DATA_PATH = "test/lab_%1$s/lab_%1$s_%2$s_data/";
     private static long begin_time;

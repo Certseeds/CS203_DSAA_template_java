@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class lab_00_C_test {
+public class lab_00_C_Test {
     private static final String[] init_String = new String[0];
     private static final String DATA_PATH = "test/lab_00/lab_00_C_data/";
     private static long begin_time;

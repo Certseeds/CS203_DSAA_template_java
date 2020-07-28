@@ -13,7 +13,7 @@ public class file_producer {
     private static final String SOURCE_PATH = "./../source/lab_%1$s/";
     private static final String SOURCE_FILE = SOURCE_PATH + "lab_%1$s_%2$s.java";
     private static final String TEST_PATH = "./../test/lab_%1$s/";
-    private static final String TEST_FILE = TEST_PATH + "lab_%1$s_%2$s_test.java";
+    private static final String TEST_FILE = TEST_PATH + "lab_%1$s_%2$s_Test.java";
     private static final String TEST_DATA_PATH = TEST_PATH + "lab_%1$s_%2$s_data";
     private static String source_code_template;
     private static String test_code_template;
