@@ -10,11 +10,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class file_producer {
-    private static final String ENCODING = "UTF-8";
     private static final String SOURCE_PATH = "./../source/lab_%1$s/";
     private static final String SOURCE_FILE = SOURCE_PATH + "lab_%1$s_%2$s.java";
     private static final String TEST_PATH = "./../test/lab_%1$s/";
     private static final String TEST_FILE = TEST_PATH + "lab_%1$s_%2$s_test.java";
+    private static final String TEST_DATA_PATH = TEST_PATH + "lab_%1$s_%2$s_data";
     private static String source_code_template;
     private static String test_code_template;
     private static String file_header_template;
@@ -23,29 +23,21 @@ public class file_producer {
     private static final String REPO_NAME = "YOUR_REPO_NAME";
     private static final String YEAR = new SimpleDateFormat("yyyy").format(new Date());
     private static final String CREATE_TIME = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    private static final String[] labs =
+            {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15"};
+    private static final String[] problem_order = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+    //        String[] labs = {"01"};
+    //        String[] problem_order = {"A"};
+    private static final String[] test_datas = {"01", "02", "03"};
 
     public static void main(String[] args) throws IOException {
         source_code_template = read_file("./java_template.txt");
-        test_code_template = read_file("java_test_template.txt");
+        test_code_template = read_file("./java_test_template.txt");
         file_header_template = read_file("./file_header.txt");
-        String[] labs = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15"};
-        String[] problem_order = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-//        String[] labs = {"01"};
-//        String[] problem_order = {"A"};
         for (String i : labs) {
             try_mkdir(i);
             for (String j : problem_order) {
-                File test_path = new File(String.format(TEST_PATH + "lab_%1$s_%2$s_data", i, j));
-                if (!test_path.exists()) {
-                    test_path.mkdir();
-                }
-                String input_file_name=String.format(TEST_PATH + "lab_%1$s_%2$s_data", i, j)+"/01.data.in";
-                if (!Files.exists(Paths.get(input_file_name))) {
-                    Files.createFile(Paths.get(input_file_name));
-                    try (FileWriter fw1 = new FileWriter(new File(input_file_name), true);) {
-                        fw1.write("114 514\n");
-                    }
-                }
+                //try_make_data_dir(i, j);
                 fill_file(i, j);
             }
         }
@@ -65,8 +57,7 @@ public class file_producer {
         File source = new File(String.valueOf(path1));
         File test = new File(String.valueOf(path2));
         try (FileWriter fw1 = new FileWriter(source, true);
-             FileWriter fw2 = new FileWriter(test, true);
-        ) {
+             FileWriter fw2 = new FileWriter(test, true);) {
             fw1.write(String.format(source_code_template, lab_number, problem_order));
             fw2.write(String.format(test_code_template, lab_number, problem_order));
             fw1.write(String.format(file_header_template, GITHUB_USER, USER, REPO_NAME, YEAR, CREATE_TIME));
@@ -74,6 +65,24 @@ public class file_producer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void try_make_data_dir(String lab_number, String problem_order) {
+        File test_path = new File(String.format(TEST_DATA_PATH, lab_number, problem_order));
+        if (!test_path.exists()) {
+            test_path.mkdir();
+        }
+        for (String num : test_datas) {
+            String input_file_name = String.format(TEST_DATA_PATH, lab_number, problem_order) +
+                    String.format("/%s.data.in", num);
+            if (!Files.exists(Paths.get(input_file_name))) {
+                Files.createFile(Paths.get(input_file_name));
+                try (FileWriter fw1 = new FileWriter(new File(input_file_name), true);) {
+                    fw1.write("114 514\n");
+                }
+            }
+        }
+
     }
 
     private static void try_mkdir(String lab_number) {

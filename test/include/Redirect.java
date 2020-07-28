@@ -22,7 +22,7 @@ public class Redirect {
 
     public void set_path(String input_path, String output_path) throws FileNotFoundException {
         input(input_path);
-        if (!output_path.equals("")) {
+        if (!"".equals(output_path)) {
             output(output_path);
         }
     }
@@ -38,9 +38,9 @@ public class Redirect {
         System.setOut(ps);
     }
 
-    public boolean compare_double(String path1, String path2) {
-        File file1 = new File(data_path + path1);
-        File file2 = new File(data_path + path2);
+    public boolean compare_double(String expected, String actual) {
+        File file1 = new File(data_path + expected);
+        File file2 = new File(data_path + actual);
         return Objects.equals(getFileMD5(file1), getFileMD5(file2));
     }
 

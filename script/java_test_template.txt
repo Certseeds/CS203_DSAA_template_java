@@ -1,6 +1,7 @@
-package lab_%1$s;
+package lab_%1$d;
 
 import include.Redirect;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -8,17 +9,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.Random;
 
-public class lab_%1$s_%2$s_test {
+public class lab_%1$d_%2$d_test {
+    private static InputStream System_in;
+    private static PrintStream System_out;
     private static final String[] init_String = new String[0];
     private static Random random;
     private static Redirect redirect;
-    private static final String DATA_PATH = "test\\lab_%1$s\\lab_%1$s_%2$s_data\\";
+    private static final String DATA_PATH = "test/lab_%1$d/lab_%1$d_%2$d_data/";
+    private static long begin_time;
 
     @BeforeAll
     public static void init() {
+        begin_time = System.currentTimeMillis();
+        System_in = System.in;
+        System_out = System.out;
         random = new Random();
         redirect = new Redirect(DATA_PATH);
     }
@@ -29,41 +36,48 @@ public class lab_%1$s_%2$s_test {
         for (int i = 0; i < 114; i++) {
             int x = random.nextInt(0x3f3f3f3f);
             int y = random.nextInt(0x3f3f3f3f);
-            assertEquals(x + y, lab_%1$s_%2$s.cal(new int[]{x, y}));
+            assertEquals(x + y, lab_%1$d_%2$d.cal(new int[]{x, y}));
         }
     }
 
     @Order(1)
     @Test
     public void test_2() throws IOException {
-        redirect.set_path("01.data.in","01.test.out");
-        lab_%1$s_%2$s.output(lab_%1$s_%2$s.cal(lab_%1$s_%2$s.read()));
-        //assertTrue(redirect.compare_double("01.test.out", "01.data.out"));
+        redirect.set_path("01.data.in", "01.test.out");
+        lab_%1$d_%2$d.output(lab_%1$d_%2$d.cal(lab_%1$d_%2$d.read()));
+        assertTrue(redirect.compare_double("01.test.out", "01.data.out"));
 
-        redirect.set_path("01.data.in","01.test.out");
-        lab_%1$s_%2$s.output(lab_%1$s_%2$s.cal(lab_%1$s_%2$s.read2()));
-        //assertTrue(redirect.compare_double("01.test.out", "01.data.out"));
+        redirect.set_path("01.data.in", "01.test.out");
+        lab_%1$d_%2$d.output(lab_%1$d_%2$d.cal(lab_%1$d_%2$d.read2()));
+        assertTrue(redirect.compare_double("01.test.out", "01.data.out"));
 
 
-        redirect.set_path("01.data.in","01.test.out");
-        lab_%1$s_%2$s.output(lab_%1$s_%2$s.cal(lab_%1$s_%2$s.read3()));
-        //assertTrue(redirect.compare_double("01.test.out", "01.data.out"));
+        redirect.set_path("01.data.in", "01.test.out");
+        lab_%1$d_%2$d.output(lab_%1$d_%2$d.cal(lab_%1$d_%2$d.read3()));
+        assertTrue(redirect.compare_double("01.test.out", "01.data.out"));
     }
 
     @Order(2)
     @Test
-    public void test_3()throws IOException{
+    public void test_3() throws IOException {
         redirect.set_path("01.data.in");
-        assertEquals(628,lab_%1$s_%2$s.cal(lab_%1$s_%2$s.read()));
+        assertEquals(628, lab_%1$d_%2$d.cal(lab_%1$d_%2$d.read()));
 
         redirect.set_path("01.data.in");
-        assertEquals(628,lab_%1$s_%2$s.cal(lab_%1$s_%2$s.read1()));
+        assertEquals(628, lab_%1$d_%2$d.cal(lab_%1$d_%2$d.read1()));
 
         redirect.set_path("01.data.in");
-        assertEquals(628,lab_%1$s_%2$s.cal(lab_%1$s_%2$s.read2()));
+        assertEquals(628, lab_%1$d_%2$d.cal(lab_%1$d_%2$d.read2()));
 
         redirect.set_path("01.data.in");
-        assertEquals(628,lab_%1$s_%2$s.cal(lab_%1$s_%2$s.read3()));
+        assertEquals(628, lab_%1$d_%2$d.cal(lab_%1$d_%2$d.read3()));
+    }
+
+    @AfterAll
+    public static void last_one() {
+        System.setIn(System_in);
+        System.setOut(System_out);
+        System.out.println(String.format("cost %d ms",System.currentTimeMillis()-begin_time));
     }
 }
 

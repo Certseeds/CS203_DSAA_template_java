@@ -1,55 +1,49 @@
 package lab_00;
 
+import include.Reader;
+
 import java.io.IOException;
 import java.util.Scanner;
 
-import include.Reader;
+public class lab_00_C {
+    private enum COLOR {
+        uncolor, red, black
+    }
 
-public class lab_00_A {
-    public static int[] read(){
-        int[] will_return = new int[2];
+    public static long[] read() {
         Scanner input = new Scanner(System.in);
-        will_return[0] = input.nextInt();
-        will_return[1] = input.nextInt();
+        int test_number = 0;
+        test_number = input.nextInt();
+        long[] will_return = new long[test_number];
+        for (int i = 0; i < will_return.length; i++) {
+            will_return[i] = input.nextInt();
+        }
         return will_return;
     }
-    public static int[] reader() throws IOException {
-        int[] will_return = new int[2];
+
+    public static long[] reader() throws IOException {
         Reader input = new Reader();
-        will_return[0] = input.nextInt();
-        will_return[1] = input.nextInt();
+        int test_number = input.nextInt();
+        long[] will_return = new long[test_number];
+        for (int i = 0; i < will_return.length; i++) {
+            will_return[i] = input.nextInt();
+        }
         return will_return;
-    }
-
-    public static int cal(int[] nums) {
-        assert (nums.length == 2);
-        return nums[0] + nums[1];
-    }
-
-    public static void main(String[] args) throws IOException {
-        int[] datas = reader();
-        int result = cal(datas);
-        output(result);
-    }
-
-    public static void output(int number) {
-        System.out.println(number);
     }
 
 }
-
 /**
- * @Github: https://github.com/Certseeds/CS203_DSAA_templalte_java
+ * @Github: https://github.com/Certseeds/CS203_DSAA_template_java
  * @Organization: SUSTech
  * @Author: nanoseeds
- * @Date: 2020-07-26 21:48:48
+ * @Date: 2020-07-28 11:07:58
  * @LastEditors: nanoseeds
  * @LICENSE: MIT
  */
 /*
 MIT License
 
-CS203_DSAA_templalte_java
+CS203_DSAA_template_java 
 
 Copyright (C) 2020  nanoseeds
 
