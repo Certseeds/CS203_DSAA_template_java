@@ -14,7 +14,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class lab_00_D_test {
+public class lab_00_D_Test {
     private static final String[] init_String = new String[0];
     private static final String DATA_PATH = "test/lab_00/lab_00_D_data/";
     private static long begin_time;

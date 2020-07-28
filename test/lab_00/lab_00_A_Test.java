@@ -6,7 +6,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -14,7 +13,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class lab_00_A_test {
+public class lab_00_A_Test {
     private static final String[] init_String = new String[0];
     private static final String DATA_PATH = "test/lab_00/lab_00_A_data/";
     private static long begin_time;
