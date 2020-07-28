@@ -17,7 +17,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   test:
-    name: test dev
+    name: test dev's script
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -39,7 +39,14 @@ jobs:
             java-version: 11
       - name: Use java and javac
         run: javac --version; java --version
-      
+     
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v3
+        with:
+          maven-version: 3.6.3
+      - name: maven test
+        run: mvn clean test
+
       - name: run script
         working-directory: ./script
         run: javac ./file_producer.java; java file_producer
