@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import include.Reader;
-import include.Reader_2;
-import include.Reader_3;
+
 public class lab_%1$s_%2$s {
     public static int[] read(){
         int[] will_return = new int[2];
@@ -14,26 +13,11 @@ public class lab_%1$s_%2$s {
         will_return[1] = input.nextInt();
         return will_return;
     }
-    public static int[] read1() throws IOException {
+    public static int[] reader() throws IOException {
         int[] will_return = new int[2];
-        Reader.init(System.in);
-        will_return[0] = Reader.nextInt();
-        will_return[1] = Reader.nextInt();
-        return will_return;
-    }
-    public static int[] read2() throws IOException {
-        int[] will_return = new int[2];
-        Reader_2 Reader = new Reader_2();
-        will_return[0] = Reader.nextInt();
-        will_return[1] = Reader.nextInt();
-        return will_return;
-    }
-
-    public static int[] read3() throws IOException {
-        int[] will_return = new int[2];
-        Reader_3.init(System.in);
-        will_return[0] = Reader_3.nextInt();
-        will_return[1] = Reader_3.nextInt();
+        Reader input = new Reader();
+        will_return[0] = input.nextInt();
+        will_return[1] = input.nextInt();
         return will_return;
     }
 
@@ -43,7 +27,7 @@ public class lab_%1$s_%2$s {
     }
 
     public static void main(String[] args) throws IOException {
-        int[] datas = read2();
+        int[] datas = reader();
         int result = cal(datas);
         output(result);
     }

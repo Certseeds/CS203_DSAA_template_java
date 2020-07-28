@@ -1,55 +1,47 @@
-package lab_00;
+package include;
 
-import java.io.IOException;
-import java.util.Scanner;
+public class Quaternion<T, U, V, W> {
 
-import include.Reader;
+    private final T first;
+    private final U second;
+    private final V third;
+    private final W fourth;
 
-public class lab_00_A {
-    public static int[] read(){
-        int[] will_return = new int[2];
-        Scanner input = new Scanner(System.in);
-        will_return[0] = input.nextInt();
-        will_return[1] = input.nextInt();
-        return will_return;
-    }
-    public static int[] reader() throws IOException {
-        int[] will_return = new int[2];
-        Reader input = new Reader();
-        will_return[0] = input.nextInt();
-        will_return[1] = input.nextInt();
-        return will_return;
+    public Quaternion(T first, U second, V third, W fourth) {
+        this.first = first;
+        this.second = second;
+        this.third = third;
+        this.fourth = fourth;
     }
 
-    public static int cal(int[] nums) {
-        assert (nums.length == 2);
-        return nums[0] + nums[1];
+    public T getFirst() {
+        return first;
     }
 
-    public static void main(String[] args) throws IOException {
-        int[] datas = reader();
-        int result = cal(datas);
-        output(result);
+    public U getSecond() {
+        return second;
     }
 
-    public static void output(int number) {
-        System.out.println(number);
+    public V getThird() {
+        return third;
     }
 
+    public W getFourth() {
+        return fourth;
+    }
 }
-
 /**
  * @Github: https://github.com/Certseeds/CS203_DSAA_templalte_java
  * @Organization: SUSTech
  * @Author: nanoseeds
- * @Date: 2020-07-26 21:48:48
+ * @Date: 2020-07-28 22:40:21
  * @LastEditors: nanoseeds
  * @LICENSE: MIT
  */
 /*
 MIT License
 
-CS203_DSAA_templalte_java
+CS203_DSAA_templalte_java 
 
 Copyright (C) 2020  nanoseeds
 

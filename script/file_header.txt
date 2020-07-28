@@ -9,7 +9,7 @@
 /*
 MIT License
 
-{1}
+%2$s
 
 Copyright (C) %5$s %3$s
 

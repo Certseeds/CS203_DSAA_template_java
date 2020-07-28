@@ -30,10 +30,7 @@ jobs:
 
       # ensure the path and files of project
       - name: ensure the path and files of project
-        run: |
-          echo $(pwd)
-          ls -la
-          sudo apt install tree
+        run: sudo apt install tree; tree
 
       - name: Setup Java JDK
         uses: actions/setup-java@v1.4.0
