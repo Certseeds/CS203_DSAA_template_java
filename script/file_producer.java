@@ -26,8 +26,8 @@ public class file_producer {
     private static final String[] labs =
             {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15"};
     private static final String[] problem_order = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-    //    private static final String[] labs = {"01"};
-    //    private static final String[] problem_order = {"A"};
+    //    private static final String[] labs = {"00"};
+//    private static final String[] problem_order = {"E"};
     private static final String[] test_datas = {"01", "02", "03"};
 
     public static void main(String[] args) throws IOException {
@@ -42,7 +42,7 @@ public class file_producer {
             }
         }
         System.out.println("produce files finish");
-        System.out.printf("%d files is produces", labs.length * problem_order.length * 3);
+        System.out.printf("%d files is produces", labs.length * problem_order.length * 2);
     }
 
     private static void fill_file(String lab_number, String problem_order) throws IOException {

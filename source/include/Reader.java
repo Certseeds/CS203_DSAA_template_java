@@ -5,14 +5,18 @@ package include;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 // come from https://www.geeksforgeeks.org/fast-io-in-java-in-competitive-programming/
+/***
+ * DO NOT USE IT DIRECTLY!
+ * COPY IT TO YOUR SOURCE FILE
+ */
 public class Reader {
     private final int BUFFER_SIZE = 1 << 16;
     private final DataInputStream dis;
     private final byte[] buffer;
     private int bufferPointer, bytesRead;
+    private final int LINE_LENGTH = 1 << 6; // aka 64
 
     public Reader() {
         dis = new DataInputStream(System.in);
@@ -27,7 +31,7 @@ public class Reader {
     }
 
     public String nextLine() throws IOException {
-        byte[] buf = new byte[64]; // line length
+        byte[] buf = new byte[LINE_LENGTH]; // line length
         int cnt = 0, c;
         while ((c = read()) != -1) {
             if (c == '\n') {
@@ -37,6 +41,7 @@ public class Reader {
         }
         return new String(buf, 0, cnt);
     }
+
     // this function eat the lines last '\r\n','\n'
     // so after the after not need a readLine() to make next Readline can read a line
     public int nextInt() throws IOException {
