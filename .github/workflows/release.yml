@@ -35,12 +35,23 @@ jobs:
         run: sudo apt install tree; tree
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v1.4.0
+        uses: actions/setup-java@v1
         with:
           # The Java version to make available on the path. Takes a whole or semver Java version,
           #or 1.x syntax (e.g. 1.8 => Java 8.x).
           # Early access versions can be specified in the form of e.g. 14-ea, 14.0.0-ea, or 14.0.0-ea.28
           java-version: 11
+        
+      - uses: actions/cache@v2
+        env:
+          cache-name: cache-maven-modules
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}
 
       - name: Use java and javac
         run: javac --version; java --version
