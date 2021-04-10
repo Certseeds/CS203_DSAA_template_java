@@ -75,7 +75,7 @@ public class lab_00_B_Test {
     public static void last_one() {
         System.setIn(System_in);
         System.setOut(System_out);
-        System.out.println(String.format("cost %d ms", System.currentTimeMillis() - begin_time));
+        System.out.printf("cost %d ms%n", System.currentTimeMillis() - begin_time);
     }
 }
 /**

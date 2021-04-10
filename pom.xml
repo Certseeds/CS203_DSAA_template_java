@@ -7,18 +7,20 @@
     <groupId>nanoseeds</groupId>
     <artifactId>CS203_DSAA_templalte_java</artifactId>
     <version>0.0.4</version>
+
+    <name>${artifactId}</name>
+    <url>https://github.com/Certseeds/CS203_DSAA_templalte_java2</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <jdk.version>11</jdk.version>
+        <jdk.test_version>${jdk.version}</jdk.test_version>
     </properties>
     <repositories>
         <!-- 虽然好像没用,但是至少能提醒一下要换源-->
         <repository>
             <id>central</id>
             <name>aliyun maven</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
             <layout>default</layout>
             <!-- 是否开启发布版构件下载 -->
             <releases>
@@ -55,15 +57,20 @@
                     <version>3.0.2</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.0</version>
                     <configuration>
-                        <release>11</release>
+                        <encoding>UTF-8</encoding>
+                        <source>${jdk.version}</source>
+                        <target>${jdk.version}</target>
+                        <testSource>${jdk.test_version}</testSource>
+                        <testTarget>${jdk.test_version}</testTarget>
                     </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.1</version>
+                    <version>3.0.0-M5</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
@@ -89,4 +96,30 @@
             </plugins>
         </pluginManagement>
     </build>
+    <profiles>
+        <profile>
+            <id>ide</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>idea.maven.embedder.version</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.8.0</version>
+                        <configuration>
+                            <source>${jdk.test_version}</source>
+                            <target>${jdk.test_version}</target>
+                            <testSource>${jdk.test_version}</testSource>
+                            <testTarget>${jdk.test_version}</testTarget>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
