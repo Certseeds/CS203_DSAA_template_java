@@ -8,7 +8,7 @@
     <artifactId>CS203_DSAA_templalte_java</artifactId>
     <version>0.0.4</version>
 
-    <name>${artifactId}</name>
+    <name>${project.artifactId}</name>
     <url>https://github.com/Certseeds/CS203_DSAA_templalte_java2</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
