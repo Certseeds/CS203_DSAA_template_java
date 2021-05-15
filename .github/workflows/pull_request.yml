@@ -39,7 +39,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 11
-
+          distribution: 'adopt'
       - uses: actions/cache@v2
         env:
           cache-name: cache-maven-modules
@@ -86,7 +86,7 @@ jobs:
           #or 1.x syntax (e.g. 1.8 => Java 8.x).
           # Early access versions can be specified in the form of e.g. 14-ea, 14.0.0-ea, or 14.0.0-ea.28
           java-version: 11
-
+          distribution: 'adopt'
       - name: Use java and javac
         run: javac --version; java --version
 

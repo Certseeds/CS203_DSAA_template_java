@@ -35,6 +35,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 11
+          distribution: 'adopt'
 
       - uses: actions/cache@v2
         env:
@@ -67,7 +68,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 11
-
+          distribution: 'adopt'
       - name: Branch name
         id: branch_name
         run: |
