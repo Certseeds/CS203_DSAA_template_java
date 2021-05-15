@@ -23,7 +23,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-18.04, ubuntu-latest,windows-latest ]
+        os: [ ubuntu-18.04, ubuntu-latest ]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -51,14 +51,9 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x .gradlew
-        if: ${{matrix.os != 'windows-latest'}}
+
       - name: Build with Gradle in unix-like
         run: ./.gradlew build
-        if: ${{matrix.os != 'windows-latest'}}
-
-      - name: Build with Gradle in windows
-        run: .gradlew.bat build
-        if: ${{matrix.os == 'windows-latest'}}
 
       - name: clean build test
         run: gradle clean build test
