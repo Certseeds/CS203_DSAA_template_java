@@ -1,13 +1,15 @@
-package include;
-
-public class Pair<T, U> {
+public class Quaternion<T, U, V, W> {
 
     private final T first;
     private final U second;
+    private final V third;
+    private final W fourth;
 
-    public Pair(T first, U second) {
+    public Quaternion(T first, U second, V third, W fourth) {
         this.first = first;
         this.second = second;
+        this.third = third;
+        this.fourth = fourth;
     }
 
     public T getFirst() {
@@ -17,12 +19,20 @@ public class Pair<T, U> {
     public U getSecond() {
         return second;
     }
+
+    public V getThird() {
+        return third;
+    }
+
+    public W getFourth() {
+        return fourth;
+    }
 }
 /**
  * @Github: https://github.com/Certseeds/CS203_DSAA_templalte_java
  * @Organization: SUSTech
  * @Author: nanoseeds
- * @Date: 2020-07-28 22:25:27
+ * @Date: 2020-07-28 22:40:21
  * @LastEditors: nanoseeds
  * @LICENSE: MIT
  */

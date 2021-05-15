@@ -1,37 +1,65 @@
-package include;
-
-// Working program using Reader Class
-
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Scanner;
+
+public class lab_00_A {
+    public static int[] read(){
+        int[] will_return = new int[2];
+        Scanner input = new Scanner(System.in);
+        will_return[0] = input.nextInt();
+        will_return[1] = input.nextInt();
+        return will_return;
+    }
+    public static int[] reader() throws IOException {
+        int[] will_return = new int[2];
+        Reader_00_A input = new Reader_00_A();
+        will_return[0] = input.nextInt();
+        will_return[1] = input.nextInt();
+        return will_return;
+    }
+
+    public static int cal(int[] nums) {
+        assert (nums.length == 2);
+        return nums[0] + nums[1];
+    }
+
+    public static void main(String[] args) throws IOException {
+        int[] datas = reader();
+        int result = cal(datas);
+        output(result);
+    }
+
+    public static void output(int number) {
+        System.out.print(number + '\n');
+    }
+
+}
+
+// Working program using Reader Class
+
 
 // come from https://www.geeksforgeeks.org/fast-io-in-java-in-competitive-programming/
-/***
- * DO NOT USE IT DIRECTLY!
- * COPY IT TO YOUR SOURCE FILE
- */
-public class Reader {
+class Reader_00_A {
     private final int BUFFER_SIZE = 1 << 16;
     private final DataInputStream dis;
     private final byte[] buffer;
     private int bufferPointer, bytesRead;
-    private final int LINE_LENGTH = 1 << 6; // aka 64
 
-    public Reader() {
+    public Reader_00_A() {
         dis = new DataInputStream(System.in);
         buffer = new byte[BUFFER_SIZE];
         bufferPointer = bytesRead = 0;
     }
 
-    public Reader(String file_name) throws IOException {
+    public Reader_00_A(String file_name) throws IOException {
         dis = new DataInputStream(new FileInputStream(file_name));
         buffer = new byte[BUFFER_SIZE];
         bufferPointer = bytesRead = 0;
     }
 
     public String nextLine() throws IOException {
-        byte[] buf = new byte[LINE_LENGTH]; // line length
+        byte[] buf = new byte[64]; // line length
         int cnt = 0, c;
         while ((c = read()) != -1) {
             if (c == '\n') {
@@ -109,45 +137,43 @@ public class Reader {
 
     private void fillBuffer() throws IOException {
         bytesRead = dis.read(buffer, bufferPointer = 0, BUFFER_SIZE);
-        if (bytesRead == -1){
+        if (bytesRead == -1) {
             buffer[0] = -1;
         }
     }
 
     private byte read() throws IOException {
-        if (bufferPointer == bytesRead){
+        if (bufferPointer == bytesRead) {
             fillBuffer();
         }
         return buffer[bufferPointer++];
     }
 
     public void close() throws IOException {
-        if (dis == null){
+        if (dis == null) {
             return;
         }
         dis.close();
     }
 }
-
-
 /**
  * @Github: https://github.com/Certseeds/CS203_DSAA_templalte_java
  * @Organization: SUSTech
  * @Author: nanoseeds
- * @Date: 2020-07-26 22:18:13
+ * @Date: 2020-07-26 21:48:48
  * @LastEditors: nanoseeds
  * @LICENSE: MIT
  */
 /*
 MIT License
 
-CS203_DSAA_templalte_java 
+CS203_DSAA_templalte_java
 
 Copyright (C) 2020  nanoseeds
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, includisg without limitation the rights
+in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
@@ -156,7 +182,7 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUdisG BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,

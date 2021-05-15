@@ -1,5 +1,3 @@
-package include;
-
 public class Triple<T, U, V> {
 
     private final T first;

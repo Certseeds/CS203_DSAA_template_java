@@ -1,108 +1,78 @@
-package lab_00;
-
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Map;
 import java.util.Scanner;
 
-public class lab_00_D {
-    private static final Map.Entry<Integer, String>[] spis = new Map.Entry[]{
-            new AbstractMap.SimpleImmutableEntry<>(2, "+---+"),
-            new AbstractMap.SimpleImmutableEntry<>(1, "/   /|"),
-            new AbstractMap.SimpleImmutableEntry<>(0, "+---+ |"),
-            new AbstractMap.SimpleImmutableEntry<>(0, "|   | +"),
-            new AbstractMap.SimpleImmutableEntry<>(0, "|   |/"),
-            new AbstractMap.SimpleImmutableEntry<>(0, "+---+")};
-
-    public static int[][] read() {
+public class lab_00_B {
+    public static long[] read() {
         Scanner input = new Scanner(System.in);
-        int m = input.nextInt();
-        int n = input.nextInt();
-        int[][] will_return = new int[m + 1][n + 1];
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                will_return[i][j] = input.nextInt();
-            }
+        int test_number = input.nextInt();
+        long[] will_return = new long[test_number];
+        for (int i = 0; i < test_number; i++) {
+            will_return[i] = input.nextInt();
         }
         return will_return;
     }
 
-    public static int[][] reader() throws IOException {
-        Reader_00_D input = new Reader_00_D();
-        int m = input.nextInt();
-        int n = input.nextInt();
-        int[][] will_return = new int[m + 1][n + 1];
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                will_return[i][j] = input.nextInt();
-            }
+    public static long[] reader() throws IOException {
+        Reader_00_B reader_00_b = new Reader_00_B();
+        int test_number = reader_00_b.nextInt();
+        long[] will_return = new long[test_number];
+        for (int i = 0; i < will_return.length; i++) {
+            will_return[i] = reader_00_b.nextInt();
         }
         return will_return;
     }
 
 
-    public static void print(char[][] map, int a, int b) {
-        for (int i = 0; i < spis.length; i++) {
-            for (int j = 0; j < spis[i].getValue().length(); j++) {
-                map[a - 1 + i][b + j + spis[i].getKey()] = spis[i].getValue().charAt(j);
-            }
+    static long[] cal_warpper(long[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = cal(nums[i]);
         }
+        return nums;
     }
 
-    public static void cal(int[][] hi) {
-        char[][] out = new char[302][301];
-        Arrays.stream(out).forEach(a -> Arrays.fill(a, '.'));
-        int m = hi.length - 1;
-        int n = hi[0].length - 1;
-        int wide = 4 * n + 2 * m + 1;
-        int h = -0x3f3f;
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                h = Math.max(h, hi[i][j] * 3 + 2 * (m - i + 1) + 1);
-            }
+    static long cal(long data) {
+        long will_return = data * (data + 1) * (data + 2) / 6;
+        return will_return;
+    }
+
+    static long brute_force(long data) {
+        long will_return = 0;
+        for (long i = 1; i <= data; ++i) {
+            will_return += i * (i + 1) / 2;
         }
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                for (int k = 0; k < hi[i][j]; k++) {
-                    int x = h - 3 * (k + 2) - 2 * (m - i) + 1;
-                    int y = 4 * j + 2 * (m - i - 1) - 1;
-                    print(out, x, y);
-                }
-            }
+        return will_return;
+    }
+
+    static void output(long[] nums) {
+        for (long num : nums) {
+            System.out.print(num);
+            System.out.print('\n');
         }
-        output(out, h, wide);
     }
 
     public static void main(String[] args) {
-        cal(read());
-    }
 
-    public static void output(char[][] map, int high, int wide) {
-        for (int i = 0; i < high; i++) {
-            for (int j = 1; j <= wide; j++) {
-                System.out.print(map[i][j]);
-            }
-            System.out.print("\n");
-        }
     }
 }
 
-class Reader_00_D {
+/**
+ * Read helper, make it faster
+ */
+class Reader_00_B {
     private final int BUFFER_SIZE = 1 << 16;
     private final DataInputStream dis;
     private final byte[] buffer;
     private int bufferPointer, bytesRead;
 
-    public Reader_00_D() {
+    public Reader_00_B() {
         dis = new DataInputStream(System.in);
         buffer = new byte[BUFFER_SIZE];
         bufferPointer = bytesRead = 0;
     }
 
-    public Reader_00_D(String file_name) throws IOException {
+    public Reader_00_B(String file_name) throws IOException {
         dis = new DataInputStream(new FileInputStream(file_name));
         buffer = new byte[BUFFER_SIZE];
         bufferPointer = bytesRead = 0;
@@ -206,18 +176,19 @@ class Reader_00_D {
         dis.close();
     }
 }
+
 /**
- * @Github: https://github.com/Certseeds/CS203_DSAA_templalte_java
+ * @Github: https://github.com/Certseeds/CS203_DSAA_template_java
  * @Organization: SUSTech
  * @Author: nanoseeds
- * @Date: 2020-07-28 22:44:46
+ * @Date: 2020-07-28 11:07:58
  * @LastEditors: nanoseeds
  * @LICENSE: MIT
  */
 /*
 MIT License
 
-CS203_DSAA_templalte_java 
+CS203_DSAA_template_java
 
 Copyright (C) 2020  nanoseeds
 

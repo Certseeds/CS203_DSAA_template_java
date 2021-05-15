@@ -1,5 +1,3 @@
-package lab_%1$s;
-
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -33,7 +31,8 @@ public class lab_%1$s_%2$s {
     }
 
     public static void output(int number) {
-        System.out.print(number+'\n');
+        System.out.print(number);
+        System.out.print('\n');
     }
 
 }
@@ -42,7 +41,7 @@ public class lab_%1$s_%2$s {
  * Read helper, make it faster
  */
 class Reader_%1$s_%2$s {
-    private final int BUFFER_SIZE = 1 << 16;
+    private final int BUFFER_SIZE = 1 << 16; //aka 65536
     private final DataInputStream dis;
     private final byte[] buffer;
     private int bufferPointer, bytesRead;
