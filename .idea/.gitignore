@@ -1,0 +1,4 @@
+*.xml
+!fileTemplates/
+!compiler.xml
+!.gitignore
