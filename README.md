@@ -37,18 +37,19 @@
     1. `.idea`中的`#set( ${GITHUB_USER} = "Certseeds")` -> `#set( ${GITHUB_USER} = "YOUR_GITHUB_NAME")`
     2. `.vscode/settings.json`中的`"Github": "https://github.com/Certseeds/CS203_DSAA__template_java"` -> `"Github": "https://github.com/YOUR_GITHUB_NAME/YOUR_REPO_NAME"`
     3. 将"YOUR_GITHUB_NAME"，"YOUR_USER_NAME"，"YOUR_REPO_NAME"等替换成自己的相关信息。
-    4. 将java脚本中的个人信息替换一下
-        ``` java
-            private static final String GITHUB_USER = "YOUR_GITHUB_NAME";
-            private static final String USER = "YOUR_USER_NAME";
-            private static final String REPO_NAME = "YOUR_REPO_NAME";
-        ```
+
 - 可选项: 使用脚本产生自定义的文件(适合source.zip或者有bonuslab):
+    + 将java脚本中的个人信息替换一下
+  ``` java
+  private static final String GITHUB_USER = "YOUR_GITHUB_NAME";
+  private static final String USER = "YOUR_USER_NAME";
+  private static final String REPO_NAME = "YOUR_REPO_NAME";
+  ```
     + 使用命令行,进入`./script`下,`javac ./file_producer.java;java file_producer`,出现`produce files finish`提示,即为创建成功.
       默认产生lab01-lab15十五个lab,  
       每个lab下A-J10个问题,  
-      每个问题一个source文件,一个test文件.  
-    + 一共15 \* 10 \* 2 = 300个文件.(全都默认为`https://acm.sustech.edu.cn/onlinejudge/problem.php?id=1000`的对应代码与测试).
+      每个问题一个source文件,一个test文件,一组testcase
+    + 一共15 \* 10 \* (1+1+2) = 600个文件.(全都默认为`https://acm.sustech.edu.cn/onlinejudge/problem.php?id=1000`的对应代码与测试).
     + 如果有bonus等情况,直接到`script\file_producer.java`中修改`labs`,`problem_order`,便可修改产生的lab数,lab名与每道题对应的名字.
       + PS:  就像下面的修改,增加了两个Bonus_Lab,同时给每个Lab中的C拆分成了C1 && C2
         ```  java

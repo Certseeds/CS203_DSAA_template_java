@@ -112,8 +112,13 @@ jobs:
         run: |
           zip -r script_no_need.zip ./CS203_DSAA_template_java -x "*/.git/*"
           mv ./script_no_need.zip ./CS203_DSAA_template_java/script_no_need.zip
+
       - name: unzip the packet
-        run: unzip ./script_no_need.zip
+        run: |
+          unzip ./script_no_need.zip
+          mkdir temp
+          mv ./CS203_DSAA_template_java ./temp/CS203_DSAA_template_java
+          mv ./temp ./CS203_DSAA_template_java
 
       - uses: actions/upload-artifact@v2
         with:
