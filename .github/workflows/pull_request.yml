@@ -36,7 +36,7 @@ jobs:
         with:
           java-version: 11
           distribution: 'adopt'
-      - uses: actions/cache@latest
+      - uses: actions/cache@v2
         env:
           cache-name: cache-maven-modules
         with:
@@ -95,14 +95,14 @@ jobs:
       - name: Use java and javac
         run: javac --version; java --version
 
-      - uses: actions/cache@latest
+      - uses: actions/cache@v2
         env:
           cache-name: cache-maven-modules
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-gradle-build-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties')}}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
