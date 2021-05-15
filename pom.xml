@@ -3,18 +3,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>nanoseeds</groupId>
     <artifactId>CS203_DSAA_templalte_java</artifactId>
     <version>0.0.4</version>
 
     <name>${project.artifactId}</name>
-    <url>https://github.com/Certseeds/CS203_DSAA_templalte_java2</url>
+    <url>https://github.com/Certseeds/CS203_DSAA_template_java</url>
+    <inceptionYear>2020</inceptionYear>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>11</jdk.version>
         <jdk.test_version>${jdk.version}</jdk.test_version>
     </properties>
+    <organization>
+        <name>SUSTech-Collection</name>
+        <url>https://github.com/SUSTech-Collection</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>Certseeds</id>
+        </developer>
+    </developers>
+
     <repositories>
         <!-- 虽然好像没用,但是至少能提醒一下要换源-->
         <repository>
@@ -71,6 +82,11 @@
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M5</version>
+                    <configuration>
+                        <includes>
+                            <include>lab_**/*</include>
+                        </includes>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
@@ -96,6 +112,7 @@
             </plugins>
         </pluginManagement>
     </build>
+
     <profiles>
         <profile>
             <id>ide</id>

@@ -19,7 +19,10 @@ on:
 jobs:
   test:
     name: run mvn test
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-18.04, ubuntu-latest,windows-latest ]
     steps:
       - name: checkout code
         uses: actions/checkout@v2
@@ -27,13 +30,14 @@ jobs:
       # ensure the path and files of project
       - name: ensure the path and files of project
         run: sudo apt install tree; tree
-      
+        if: ${{matrix.os != 'windows-latest'}}
+
+      # The Java version to make available on the path. Takes a whole or semver Java version,
+      # or 1.x syntax (e.g. 1.8 => Java 8.x).
+      # Early access versions can be specified in the form of e.g. 14-ea, 14.0.0-ea, or 14.0.0-ea.28
       - name: Setup Java JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
-          # The Java version to make available on the path. Takes a whole or semver Java version,
-          #or 1.x syntax (e.g. 1.8 => Java 8.x).
-          # Early access versions can be specified in the form of e.g. 14-ea, 14.0.0-ea, or 14.0.0-ea.28
           java-version: 11
 
       - uses: actions/cache@v2
@@ -51,13 +55,16 @@ jobs:
         run: javac --version; java --version
 
       - name: maven test
-        run: mvn clean test
+        run: mvn clean compile test
 
   # This workflow contains a single job called "build"
   build:
     name: run script and build zip
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-18.04, ubuntu-latest,windows-latest ]
     needs: test
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -70,9 +77,10 @@ jobs:
       # ensure the path and files of project
       - name: ensure the path and files of project
         run: sudo apt install tree; tree
+        if: ${{matrix.os != 'windows-latest'}}
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           # The Java version to make available on the path. Takes a whole or semver Java version,
           #or 1.x syntax (e.g. 1.8 => Java 8.x).
@@ -81,7 +89,7 @@ jobs:
 
       - name: Use java and javac
         run: javac --version; java --version
-        
+
       - uses: actions/cache@v2
         env:
           cache-name: cache-maven-modules
@@ -107,4 +115,5 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: tree
         run: tree
+        if: ${{matrix.os != 'windows-latest'}}
 

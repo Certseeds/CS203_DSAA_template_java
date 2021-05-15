@@ -7,16 +7,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 // come from https://www.geeksforgeeks.org/fast-io-in-java-in-competitive-programming/
+
 /***
  * DO NOT USE IT DIRECTLY!
  * COPY IT TO YOUR SOURCE FILE
  */
 public class Reader {
-    private final int BUFFER_SIZE = 1 << 16;
+    private final int BUFFER_SIZE = 1 << 16; // aka 65536
     private final DataInputStream dis;
     private final byte[] buffer;
     private int bufferPointer, bytesRead;
-    private final int LINE_LENGTH = 1 << 6; // aka 64
+    private static final int LINE_LENGTH = 1 << 6; // aka 64
 
     public Reader() {
         dis = new DataInputStream(System.in);
@@ -109,20 +110,20 @@ public class Reader {
 
     private void fillBuffer() throws IOException {
         bytesRead = dis.read(buffer, bufferPointer = 0, BUFFER_SIZE);
-        if (bytesRead == -1){
+        if (bytesRead == -1) {
             buffer[0] = -1;
         }
     }
 
     private byte read() throws IOException {
-        if (bufferPointer == bytesRead){
+        if (bufferPointer == bytesRead) {
             fillBuffer();
         }
         return buffer[bufferPointer++];
     }
 
     public void close() throws IOException {
-        if (dis == null){
+        if (dis == null) {
             return;
         }
         dis.close();
