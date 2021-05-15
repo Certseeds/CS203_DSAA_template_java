@@ -1,20 +1,27 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.function.Consumer;
 
 public class file_producer {
-    private static final String SOURCE_PATH = "./../source/lab_%1$s/";
+    //TODO,生成目录
+    private static final String LAB_PATH = "./../lab%1$s/";
+    private static final String SOURCE_PATH = LAB_PATH + "src/";
+    private static final String TEST_PATH = LAB_PATH + "test/";
+    private static final String TESTCASE_PATH = LAB_PATH + "testcase/";
     private static final String SOURCE_FILE = SOURCE_PATH + "lab_%1$s_%2$s.java";
-    private static final String TEST_PATH = "./../test/lab_%1$s/";
     private static final String TEST_FILE = TEST_PATH + "lab_%1$s_%2$s_Test.java";
-    private static final String TEST_DATA_PATH = TEST_PATH + "lab_%1$s_%2$s_data";
+    private static final String TEST_DATA_PATH = TESTCASE_PATH + "lab_%1$s_%2$s_data";
     private static String source_code_template;
     private static String test_code_template;
     private static String file_header_template;
@@ -28,7 +35,7 @@ public class file_producer {
     private static final String[] problem_order = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
     //    private static final String[] labs = {"00"};
 //    private static final String[] problem_order = {"E"};
-    private static final String[] test_datas = {"01", "02", "03"};
+    private static final String[] test_datas = {"01"};
 
     public static void main(String[] args) throws IOException {
         source_code_template = read_file("./java_template.txt");
@@ -39,6 +46,7 @@ public class file_producer {
             for (String j : problem_order) {
                 //try_make_data_dir(i, j);
                 fill_file(i, j);
+                try_make_data_dir(i, j);
             }
         }
         System.out.println("produce files finish");
@@ -56,8 +64,8 @@ public class file_producer {
         }
         File source = new File(String.valueOf(path1));
         File test = new File(String.valueOf(path2));
-        try (FileWriter fw1 = new FileWriter(source, true);
-             FileWriter fw2 = new FileWriter(test, true);) {
+        try (var fw1 = new OutputStreamWriter(new FileOutputStream(source), StandardCharsets.UTF_8);
+             var fw2 = new OutputStreamWriter(new FileOutputStream(test), StandardCharsets.UTF_8);) {
             fw1.write(String.format(source_code_template, lab_number, problem_order));
             fw2.write(String.format(test_code_template, lab_number, problem_order));
             fw1.write(String.format(file_header_template, GITHUB_USER, USER, REPO_NAME, CREATE_TIME, YEAR));
@@ -72,41 +80,53 @@ public class file_producer {
         if (!test_path.exists()) {
             test_path.mkdir();
         }
-        for (String num : test_datas) {
-            String input_file_name = String.format(TEST_DATA_PATH, lab_number, problem_order) +
-                    String.format("/%s.data.in", num);
-            if (!Files.exists(Paths.get(input_file_name))) {
-                Files.createFile(Paths.get(input_file_name));
-                try (FileWriter fw1 = new FileWriter(new File(input_file_name), true);) {
-                    fw1.write("114 514\n");
+        Consumer<String[]> lambda = (String[] strs) -> {
+            try {
+                String input_file_name = String.format(TEST_DATA_PATH, lab_number, problem_order) +
+                        String.format(strs[0], strs[1]);
+                if (!Files.exists(Paths.get(input_file_name))) {
+                    Files.createFile(Paths.get(input_file_name));
                 }
+                try (
+                        var fw1 = new OutputStreamWriter(new FileOutputStream(input_file_name), StandardCharsets.UTF_8);) {
+                    fw1.write(String.format("%s\n", strs[2]));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+        };
+        for (String num : test_datas) {
+            lambda.accept(new String[]{"/%s.data.in", num, "114 514"});
+            lambda.accept(new String[]{"/%s.data.out", num, "628"});
         }
 
     }
 
     private static void try_mkdir(String lab_number) {
-        File source = new File(String.format(SOURCE_PATH, lab_number));
-        File test = new File(String.format(TEST_PATH, lab_number));
-        if (!source.exists()) {
-            source.mkdir();
-        }
-        if (!test.exists()) {
-            test.mkdir();
-        }
+        final Consumer<String> lambda = (String str) -> {
+            File lab = new File(String.format(str, lab_number));
+            if (!lab.exists()) {
+                lab.mkdir();
+            }
+        };
+        lambda.accept(LAB_PATH);
+        lambda.accept(SOURCE_PATH);
+        lambda.accept(TEST_PATH);
+        lambda.accept(TESTCASE_PATH);
     }
 
     private static String read_file(String file_name) {
         File file = new File(file_name);
+        int n = 0;
         // FileInputStream fis;
-        byte[] data = new byte[0];
-        try (FileInputStream fis = new FileInputStream(file);) {
-            data = new byte[(int) file.length()];
-            fis.read(data);
+        char[] data = new char[0];
+        try (BufferedReader fis = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));) {
+            data = new char[(int) file.length()];
+            n = fis.read(data, 0, data.length);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new String(data, StandardCharsets.UTF_8);
+        return new String(data, 0, n);
     }
 }
 

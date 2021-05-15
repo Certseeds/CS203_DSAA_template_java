@@ -1,11 +1,8 @@
-package lab_00;
-
-import include.Pair;
-import include.Redirect;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -15,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class lab_00_A_Test {
     private static final String[] init_String = new String[0];
-    private static final String DATA_PATH = "test/lab_00/lab_00_A_data/";
+    private static final String DATA_PATH = "lab00/testcase/lab_00_A_data/";
     private static long begin_time;
     private static InputStream System_in;
     private static PrintStream System_out;
@@ -73,6 +70,6 @@ public class lab_00_A_Test {
     public static void last_one() {
         System.setIn(System_in);
         System.setOut(System_out);
-        System.out.println(String.format("cost %d ms", System.currentTimeMillis() - begin_time));
+        System.out.printf("cost %d ms%n", System.currentTimeMillis() - begin_time);
     }
 }

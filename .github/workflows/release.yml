@@ -40,15 +40,28 @@ jobs:
         env:
           cache-name: cache-maven-modules
         with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-maven-${{ hashFiles('**/pom.xml') }}
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}
 
-      - name: mvn
-        run: mvn clean compile test
+      - name: Grant execute permission for gradlew
+        run: chmod +x .gradlew
+        if: ${{matrix.os != 'windows-latest'}}
+      - name: Build with Gradle in unix-like
+        run: ./.gradlew build
+        if: ${{matrix.os != 'windows-latest'}}
+
+      - name: Build with Gradle in windows
+        run: .gradlew.bat build
+        if: ${{matrix.os == 'windows-latest'}}
+
+      - name: clean build test
+        run: gradle clean build test
 
   # This workflow contains a single job called "build"
   build:

@@ -1,7 +1,3 @@
-package lab_00;
-
-import include.Pair;
-import include.Redirect;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
@@ -17,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class lab_00_B_Test {
 
     private static final String[] init_String = new String[0];
-    private static final String DATA_PATH = "test/lab_00/lab_00_B_data/";
+    private static final String DATA_PATH = "lab00/testcase/lab_00_B_data/";
     private static long begin_time;
     private static InputStream System_in;
     private static PrintStream System_out;

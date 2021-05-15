@@ -1,0 +1,75 @@
+plugins {
+    id 'java'
+}
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+group 'nanoseeds'
+version '0.0.4'
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+static def produce_lists(String listname, ... params) {
+    def willReturn = {
+        def willReturn = new ArrayList<String>()
+        def testdirs = listname
+        for (i in 0..<16) {
+            def number = String.valueOf(i)
+            if (i < 10) {
+                number = "0" + number
+            }
+            willReturn.add(String.format(testdirs, number))
+        }
+        for (i in 0..<params.size()) {
+            willReturn.add(params[i] as String)
+        }
+        return willReturn
+    }
+    return willReturn
+}
+
+def produce_test_dirs = produce_lists('lab%s/test', "include")
+def produce_src_dirs = produce_lists('lab%s/src', "script")
+sourceSets {
+    main {
+        java {
+            srcDirs = produce_src_dirs()//
+        }
+    }
+    test {
+        java {
+            srcDirs = produce_test_dirs() //
+        }
+        resources {
+            srcDirs = []
+        }
+    }
+}
+
+task hello {
+    doLast {
+        println "hello world!"
+        for (repo in repositories) {
+            println(repo.url)
+        }
+        println produce_test_dirs()
+    }
+}
