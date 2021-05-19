@@ -1,8 +1,10 @@
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -10,8 +12,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 
-public class Redirect {
+public class Redirect implements Closeable {
     private final String data_path;
+    private FileInputStream fis;
+    private PrintStream ps;
+    private final PrintStream ori_out = System.out;
+    private final InputStream in_ori = System.in;
 
     public Redirect(String data_path) {
         this.data_path = data_path;
@@ -29,14 +35,19 @@ public class Redirect {
     }
 
     public void input(String input_path) throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream(data_path + input_path);
+        fis = new FileInputStream(data_path + input_path);
         System.setIn(fis);
         //重定向标准输入流到FileInputStream
     }
 
     public void output(String output_path) throws FileNotFoundException {
-        PrintStream ps = new PrintStream(new FileOutputStream(data_path + output_path));
+        ps = new PrintStream(new FileOutputStream(data_path + output_path));
         System.setOut(ps);
+    }
+
+    public void close() throws IOException {
+        System.setIn(in_ori);
+        System.setOut(ori_out);
     }
 
     public Pair<String, String> compare_double(String expected, String actual) throws IOException {

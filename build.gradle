@@ -21,12 +21,9 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
-compileJava.options.encoding = 'UTF-8'
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
+def UTF8_STR = 'UTF-8'
+compileJava.options.encoding = UTF8_STR
+compileTestJava.options.encoding = UTF8_STR
 static def produce_lists(String listname, ... params) {
     def willReturn = {
         def willReturn = new ArrayList<String>()

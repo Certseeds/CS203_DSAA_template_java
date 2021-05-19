@@ -15,16 +15,12 @@ public class lab_00_B_Test {
     private static final String[] init_String = new String[0];
     private static final String DATA_PATH = "lab00/testcase/lab_00_B_data/";
     private static long begin_time;
-    private static InputStream System_in;
-    private static PrintStream System_out;
     private static Random random;
     private static Redirect redirect;
 
     @BeforeAll
     public static void init() {
         begin_time = System.currentTimeMillis();
-        System_in = System.in;
-        System_out = System.out;
         random = new Random();
         redirect = new Redirect(DATA_PATH);
     }
@@ -68,9 +64,8 @@ public class lab_00_B_Test {
     }
 
     @AfterAll
-    public static void last_one() {
-        System.setIn(System_in);
-        System.setOut(System_out);
+    public static void last_one() throws IOException {
+        redirect.close();
         System.out.printf("cost %d ms%n", System.currentTimeMillis() - begin_time);
     }
 }

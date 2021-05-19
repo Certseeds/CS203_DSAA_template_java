@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,24 +15,19 @@ public class lab_00_C_Test {
     private static final String[] init_String = new String[0];
     private static final String DATA_PATH = "lab00/testcase/lab_00_C_data/";
     private static long begin_time;
-    private static InputStream System_in;
-    private static PrintStream System_out;
     private static Random random;
     private static Redirect redirect;
 
     @BeforeAll
     public static void init() {
         begin_time = System.currentTimeMillis();
-        System_in = System.in;
-        System_out = System.out;
         random = new Random();
         redirect = new Redirect(DATA_PATH);
     }
 
     @AfterAll
-    public static void last_one() {
-        System.setIn(System_in);
-        System.setOut(System_out);
+    public static void last_one() throws IOException {
+        redirect.close();
         System.out.println(String.format("cost %d ms", System.currentTimeMillis() - begin_time));
     }
 
