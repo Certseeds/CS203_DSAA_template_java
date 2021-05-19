@@ -53,10 +53,10 @@ jobs:
         run: javac --version; java --version
 
       - name: Grant execute permission for gradlew
-        run: chmod +x .gradlew
+        run: chmod +x .gradlew.sh
 
       - name: Build with Gradle in unix-like
-        run: ./.gradlew build
+        run: ./.gradlew.sh build
 
       - name: clean build test
         run: gradle clean build test
