@@ -1,0 +1,7 @@
+sourceSets{
+    test{
+        java{
+            srcDirs += List.of("./algorithm/effective_java")
+        }
+    }
+}

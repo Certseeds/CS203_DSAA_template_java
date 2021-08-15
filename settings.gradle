@@ -1,0 +1,3 @@
+rootProject.name = 'CS203_DSAA_template_java'
+include(':algorithm')
+project(':algorithm').projectDir = new File("algorithm") //对应Module的路径

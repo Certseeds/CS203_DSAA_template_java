@@ -1,0 +1,118 @@
+# @Github: https://github.com/Certseeds/CS203_DSAA_template
+# @Organization: SUSTech
+# @Author: nanoseeds
+# @Date: 2020-07-28 22:43:03
+# @LastEditors: nanoseeds
+#@LastEditTime: 2020-07-28 23:43:03
+# This is a basic workflow to help you get started with Actions
+
+name: publish release
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    tags:
+      - "*"
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test:
+    name: test for release
+    # The type of runner that the job will run on
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-18.04, ubuntu-latest ]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: 'adopt'
+
+      - uses: actions/cache@v2
+        env:
+          cache-name: cache-maven-modules
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-build-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x .gradlew.sh
+
+      - name: Build with Gradle in unix-like
+        run: ./.gradlew.sh build
+
+      - name: clean build test
+        run: gradle clean build test
+
+  # This workflow contains a single job called "build"
+  build:
+    name: publish release
+    if: github.repository == 'Certseeds/CS203_DSAA_template_java'
+    needs: test
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: 'adopt'
+      - name: Branch name
+        id: branch_name
+        run: |
+          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
+          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+      - name: tag name output
+        run: |
+          echo ${SOURCE_NAME};echo ${SOURCE_BRANCH};echo ${SOURCE_TAG}
+        env:
+          SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
+          SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
+          SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
+
+      - name: Use java and javac
+        run: javac --version; java --version
+
+      - name: run script
+        working-directory: ./script
+        run: javac ./file_producer.java; java file_producer
+
+      - name: zip the packet
+        working-directory: ./../
+        run: |
+          echo $(pwd)
+          zip -r script_no_need.zip ./CS203_DSAA_template_java -x "*/.git/*"
+          echo $(pwd)
+
+      - name: release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: ${{steps.branch_name.outputs.SOURCE_TAG}}
+          prerelease: false
+          title: ${{steps.branch_name.outputs.SOURCE_TAG}}
+          files: ./../script_no_need.zip
+
+      - name: tree
+        run: tree
+
