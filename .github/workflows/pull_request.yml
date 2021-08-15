@@ -61,6 +61,52 @@ jobs:
       - name: clean build test
         run: gradle clean build test
 
+  win-test:
+    name: windows compile
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2
+        with:
+          # The Java version to make available on the path. Takes a whole or semver Java version,
+          #or 1.x syntax (e.g. 1.8 => Java 8.x).
+          # Early access versions can be specified in the form of e.g. 14-ea, 14.0.0-ea, or 14.0.0-ea.28
+          java-version: 11
+          distribution: 'adopt'
+      - name: Use java and javac
+        run: java -version
+
+      - uses: actions/cache@v2
+        env:
+          cache-name: cache-maven-modules
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-build-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties')}}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}
+
+      - name: Use java and javac
+        run: java --version
+
+
+      - name: Build with Gradle in unix-like
+        run: ./.gradlew.bat
+
+      - name: clean build test
+        run: gradle clean build test
+
   # This workflow contains a single job called "build"
   build:
     name: run script and build zip
