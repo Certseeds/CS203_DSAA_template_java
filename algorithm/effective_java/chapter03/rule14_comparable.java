@@ -83,7 +83,7 @@ public final class rule14_comparable {
             // 可传递, 可以保证
             // obj1.compareTo(obj2) == 0 确保内部每一个元素进行compareTo都相同,可以保证
             // (obj1.compareTo(obj2) == 0) == (obj1.equals(obj2)) 可以保证
-            // 主要用在那些想要自定义比较,但是无法重写类的地方,传一个比较函数过去而不需要对类本身进行修改
+            // 主要用在那些想要自定义比较,但是无法重写要排序的类的地方,传一个比较函数过去而不需要对类本身进行修改
             // 反正OJ内的代码都是自己写的,这个应该用不到
             return COMPARABLE_COMPARATOR.compare(this, o);
         }
