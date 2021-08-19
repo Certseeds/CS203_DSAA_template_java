@@ -1,3 +1,5 @@
+package chapter12;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,9 +10,7 @@ import java.util.List;
 public final class StandardSerializableClassTest {
     static final class StandardSerializableClass implements Serializable, ObjectInputValidation {
         private static final long serialVersionUID = 0x7103328181202L;
-        private
-        transient // use self-defined write and read Object way
-        List<Long> l = List.of(1L, 2L, 3L);
+        private transient List<Long> l; // use self-defined write and read Object way
 
         private StandardSerializableClass() {
             throw new RuntimeException("should not use default init func");
@@ -21,7 +21,7 @@ public final class StandardSerializableClassTest {
             // 其实这里也应该有校验
         }
 
-        private void readObjectNoDate() throws InvalidObjectException {
+        private void readObjectNoData() throws InvalidObjectException {
             throw new InvalidObjectException("Stream data required");
         }
 
@@ -33,6 +33,10 @@ public final class StandardSerializableClassTest {
         @Deprecated
         protected void finalize() {
             throw new RuntimeException("should not use any finalize method");
+        }
+
+        private Object writeReplace() {
+            return this;
         }
 
         private void writeObject(ObjectOutputStream oos) throws IOException {
@@ -51,6 +55,10 @@ public final class StandardSerializableClassTest {
                 this.l.add(ois.readLong());
             }
             ois.registerValidation(this, 0);
+        }
+
+        private Object readResolve() {
+            return this;
         }
 
         @Override
