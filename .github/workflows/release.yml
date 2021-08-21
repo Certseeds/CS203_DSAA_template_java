@@ -36,7 +36,7 @@ jobs:
           java-version: 11
           distribution: 'adopt'
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v2.1.6
         env:
           cache-name: cache-maven-modules
         with:
