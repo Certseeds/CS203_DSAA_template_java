@@ -31,6 +31,7 @@ public final class StandardClassTest {
                 throw new InvalidObjectException("invalid Object");
             }
         }
-
+        // no clone method
+        // no any serializable related class
     }
 }

@@ -33,7 +33,7 @@ public final class rule14_comparable {
         private final int y;
 
         private showComparable() {
-            throw new RuntimeException("should not use default");
+            throw new AssertionError("should not use default");
         }
 
         private showComparable(int x, int y) {
@@ -52,7 +52,7 @@ public final class rule14_comparable {
          * 若x,y相同,返回0,
          * 否则返回-1
          */
-        //@Override
+        @Override
         public int compareTo(showComparable o) {
             // 自反性, 可以保证
             // 对称性, 可以保证
@@ -62,13 +62,15 @@ public final class rule14_comparable {
             // int,long这种整型可以用> <
             // float,double就得用Float.compare,Double.compare了
             // 整形用Integer.compare显得傻傻的,很不舒服
+            if (this.equals(o)) {
+                return 0;
+            }
             if (this.x > o.x || (this.x == o.x && this.y > o.y)) {
                 return 1;
-            } else if (this.x == o.x && this.y == o.y) {
-                return 0;
             }
             return -1;
         }
+
         private static final Comparator<showComparable> OLD_COMPARABLE_COMPARATOR = Comparator
                 .comparingInt((showComparable o) -> o.x) // 需要写类型,不优雅
                 .thenComparing(o -> o.y);
@@ -97,18 +99,15 @@ public final class rule14_comparable {
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) {
+        public boolean equals(Object obj) {
+            if (obj == this) {
                 return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
+            } else if (!(obj instanceof showComparable)) { // 好想用模式匹配语法
                 return false;
             }
-            final showComparable that = (showComparable) o;
-            if (x != that.x) {
-                return false;
-            }
-            return y == that.y;
+            final var objc = (showComparable) obj;
+            return (objc.x == this.x) &&
+                    (objc.y == this.y);
         }
 
         @Override

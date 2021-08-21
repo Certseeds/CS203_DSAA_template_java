@@ -13,7 +13,7 @@ public final class StandardSerializableClassTest {
         private transient List<Long> l; // use self-defined write and read Object way
 
         private StandardSerializableClass() {
-            throw new RuntimeException("should not use default init func");
+            throw new AssertionError("should not use default");
         }
 
         private StandardSerializableClass(List<Long> l) {
@@ -32,7 +32,7 @@ public final class StandardSerializableClassTest {
         @Override
         @Deprecated
         protected void finalize() {
-            throw new RuntimeException("should not use any finalize method");
+            throw new AssertionError("should not use any finalize method");
         }
 
         private Object writeReplace() {
