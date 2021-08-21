@@ -6,14 +6,14 @@ import java.util.Scanner;
 public final class lab_%1$s_%2$s {
     public static int[] read(){
         int[] will_return = new int[2];
-        Scanner input = new Scanner(System.in);
+        var input = new Scanner(System.in);
         will_return[0] = input.nextInt();
         will_return[1] = input.nextInt();
         return will_return;
     }
     public static int[] reader() throws IOException {
         int[] will_return = new int[2];
-        Reader_%1$s_%2$s input = new Reader_%1$s_%2$s();
+        var input = new Reader_%1$s_%2$s();
         will_return[0] = input.nextInt();
         will_return[1] = input.nextInt();
         return will_return;

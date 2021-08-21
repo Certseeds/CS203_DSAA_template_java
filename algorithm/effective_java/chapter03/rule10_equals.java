@@ -23,7 +23,7 @@ public class rule10_equals {
             this.y = y;
             this.z = z;
             this.time = time;
-            this.hash = this.hashCode();
+            this.hash = this.hash();
         }
 
         public static rule10_equals_class FOURTH(int x, int y, int z, double time) {
@@ -49,6 +49,16 @@ public class rule10_equals {
             return (objc.x == this.x) &&
                     (objc.y == this.y) &&
                     (objc.z == this.z) && Double.compare(objc.time, this.time) == 0;
+        }
+
+        @Override
+        protected Object clone() throws CloneNotSupportedException {
+            throw new CloneNotSupportedException();
+        }
+
+        @Override
+        protected void finalize() throws Throwable {
+            throw new AssertionError("no fanalize can use");
         }
     }
 

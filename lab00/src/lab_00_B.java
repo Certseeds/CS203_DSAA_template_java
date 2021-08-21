@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public final class lab_00_B {
     public static long[] read() {
-        Scanner input = new Scanner(System.in);
-        int test_number = input.nextInt();
-        long[] will_return = new long[test_number];
+        final var  input = new Scanner(System.in);
+        final int test_number = input.nextInt();
+        final long[] will_return = new long[test_number];
         for (int i = 0; i < test_number; i++) {
             will_return[i] = input.nextInt();
         }
@@ -15,9 +15,9 @@ public final class lab_00_B {
     }
 
     public static long[] reader() throws IOException {
-        Reader_00_B reader_00_b = new Reader_00_B();
-        int test_number = reader_00_b.nextInt();
-        long[] will_return = new long[test_number];
+        final var reader_00_b = new Reader_00_B();
+        final int test_number = reader_00_b.nextInt();
+        final long[] will_return = new long[test_number];
         for (int i = 0; i < will_return.length; i++) {
             will_return[i] = reader_00_b.nextInt();
         }
@@ -33,7 +33,7 @@ public final class lab_00_B {
     }
 
     static long cal(long data) {
-        long will_return = data * (data + 1) * (data + 2) / 6;
+        final long will_return = data * (data + 1) * (data + 2) / 6;
         return will_return;
     }
 
@@ -53,7 +53,9 @@ public final class lab_00_B {
     }
 
     public static void main(String[] args) {
-
+        final var input = read();
+        final var output = cal_warpper(input);
+        output(output);
     }
 }
 
@@ -170,7 +172,7 @@ final class Reader_00_B {
     }
 
     public void close() throws IOException {
-        
+
         dis.close();
     }
 }

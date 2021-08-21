@@ -30,9 +30,13 @@ public final class StandardSerializableClassTest {
         }
 
         @Override
-        @Deprecated
-        protected void finalize() {
-            throw new AssertionError("should not use any finalize method");
+        protected Object clone() throws CloneNotSupportedException {
+            throw new CloneNotSupportedException();
+        }
+
+        @Override
+        protected void finalize() throws Throwable {
+            throw new AssertionError("no fanalize can use");
         }
 
         private Object writeReplace() {

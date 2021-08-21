@@ -114,6 +114,16 @@ public final class rule14_comparable {
         public int hashCode() {
             return 31 * x + y;
         }
+
+        @Override
+        protected Object clone() throws CloneNotSupportedException {
+            throw new CloneNotSupportedException();
+        }
+
+        @Override
+        protected void finalize() throws Throwable {
+            throw new AssertionError("no fanalize can use");
+        }
     }
 }
 

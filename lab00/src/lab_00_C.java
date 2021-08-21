@@ -7,14 +7,15 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public final class lab_00_C {
+
     private enum COLOR {
         uncolor, red, black
     }
     // uncolor is the first so it's default when init array.
 
     public static int[][] read() {
-        Scanner input = new Scanner(System.in);
-        int node_number = input.nextInt();
+        final var input = new Scanner(System.in);
+        final int node_number = input.nextInt();
         int[][] will_return = new int[node_number][];
         for (int i = 0; i < node_number; i++) {
             int connects = input.nextInt();
@@ -27,11 +28,11 @@ public final class lab_00_C {
     }
 
     public static int[][] reader() throws IOException {
-        Reader_00_C input = new Reader_00_C();
-        int node_number = input.nextInt();
-        int[][] will_return = new int[node_number][];
+        final var  input = new Reader_00_C();
+        final int node_number = input.nextInt();
+        final int[][] will_return = new int[node_number][];
         for (int i = 0; i < node_number; i++) {
-            int connects = input.nextInt();
+            final int connects = input.nextInt();
             will_return[i] = new int[connects];
             for (int j = 0; j < connects; j++) {
                 will_return[i][j] = input.nextInt();
@@ -41,25 +42,24 @@ public final class lab_00_C {
     }
 
     public static void main(String[] args) {
-        int[][] graph = read();
-        boolean result = cal(graph);
+        final int[][] graph = read();
+        final boolean result = cal(graph);
         output(result);
     }
 
     static boolean cal(int[][] graph) {
-        int node_number = graph.length;
-        COLOR[] color_vec = new COLOR[node_number];
+        final int node_number = graph.length;
+        final var color_vec = new COLOR[node_number];
         Arrays.fill(color_vec, COLOR.uncolor);
-        Queue<Integer> que = new LinkedList<>();
+        final Queue<Integer> que = new LinkedList<>();
         for (int i = 0; i < node_number; i++) {
             if (graph[i].length != 0 && color_vec[i] == COLOR.uncolor) {
                 color_vec[i] = COLOR.red;
-                que = new LinkedList<>();
                 que.add(i);
                 while (!que.isEmpty()) {
-                    int head = que.remove();
-                    COLOR color_head = color_vec[head];
-                    COLOR next_color = (color_head == COLOR.red) ? COLOR.black : COLOR.red;
+                    final int head = que.remove();
+                    final COLOR color_head = color_vec[head];
+                    final COLOR next_color = (color_head == COLOR.red) ? COLOR.black : COLOR.red;
                     for (int j : graph[head]) {
                         if (color_vec[j] == COLOR.uncolor) {
                             color_vec[j] = next_color;
@@ -74,11 +74,14 @@ public final class lab_00_C {
         return true;
     }
 
+    private static final String SUCCESS = "\"PoSSiBLE\"\n";
+    private static final String FAIL = "\"lMP0SSlBLE\"\n";
+
     static void output(boolean data) {
         if (data) {
-            System.out.print("\"PoSSiBLE\"\n");
+            System.out.print(SUCCESS);
         } else {
-            System.out.print("\"lMP0SSlBLE\"\n");
+            System.out.print(FAIL);
         }
     }
 }

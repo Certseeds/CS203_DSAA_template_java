@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 public final class lab_00_A {
     public static int[] read(){
-        int[] will_return = new int[2];
-        Scanner input = new Scanner(System.in);
+        final int[] will_return = new int[2];
+        final var  input = new Scanner(System.in);
         will_return[0] = input.nextInt();
         will_return[1] = input.nextInt();
         return will_return;
     }
     public static int[] reader() throws IOException {
-        int[] will_return = new int[2];
-        Reader_00_A input = new Reader_00_A();
+        final int[] will_return = new int[2];
+        final var  input = new Reader_00_A();
         will_return[0] = input.nextInt();
         will_return[1] = input.nextInt();
         return will_return;
@@ -25,8 +25,8 @@ public final class lab_00_A {
     }
 
     public static void main(String[] args) throws IOException {
-        int[] datas = reader();
-        int result = cal(datas);
+        final int[] datas = reader();
+        final int result = cal(datas);
         output(result);
     }
 

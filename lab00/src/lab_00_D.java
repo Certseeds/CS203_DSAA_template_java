@@ -14,12 +14,11 @@ public final class lab_00_D {
             new AbstractMap.SimpleImmutableEntry<>(0, "|   | +"),
             new AbstractMap.SimpleImmutableEntry<>(0, "|   |/"),
             new AbstractMap.SimpleImmutableEntry<>(0, "+---+")};
-
     public static int[][] read() {
         Scanner input = new Scanner(System.in);
-        int m = input.nextInt();
-        int n = input.nextInt();
-        int[][] will_return = new int[m + 1][n + 1];
+        final int m = input.nextInt();
+        final int n = input.nextInt();
+        final int[][] will_return = new int[m + 1][n + 1];
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 will_return[i][j] = input.nextInt();
@@ -30,8 +29,8 @@ public final class lab_00_D {
 
     public static int[][] reader() throws IOException {
         Reader_00_D input = new Reader_00_D();
-        int m = input.nextInt();
-        int n = input.nextInt();
+        final int m = input.nextInt();
+        final int n = input.nextInt();
         int[][] will_return = new int[m + 1][n + 1];
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
@@ -51,11 +50,11 @@ public final class lab_00_D {
     }
 
     public static void cal(int[][] hi) {
-        char[][] out = new char[302][301];
+        final char[][] out = new char[302][301];
         Arrays.stream(out).forEach(a -> Arrays.fill(a, '.'));
-        int m = hi.length - 1;
-        int n = hi[0].length - 1;
-        int wide = 4 * n + 2 * m + 1;
+        final int m = hi.length - 1;
+        final int n = hi[0].length - 1;
+        final int wide = 4 * n + 2 * m + 1;
         int h = -0x3f3f;
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
@@ -75,7 +74,8 @@ public final class lab_00_D {
     }
 
     public static void main(String[] args) {
-        cal(read());
+        final var input = read();
+        cal(input);
     }
 
     public static void output(char[][] map, int high, int wide) {

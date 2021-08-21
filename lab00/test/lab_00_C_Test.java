@@ -7,9 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public final class lab_00_C_Test {
     private static final String[] init_String = new String[0];
@@ -71,7 +69,7 @@ public final class lab_00_C_Test {
                 new Pair<>("04.data.in", false),
                 new Pair<>("05.data.in", false)
         };
-        for (Pair<String, Boolean> me : results) {
+        for (var me : results) {
             redirect.set_path(me.getFirst());
             assertEquals(lab_00_C.cal(lab_00_C.read()), me.getSecond());
         }

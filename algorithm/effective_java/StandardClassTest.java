@@ -25,6 +25,11 @@ public final class StandardClassTest {
         }
 
         @Override
+        protected Object clone() throws CloneNotSupportedException {
+            throw new CloneNotSupportedException();
+        }
+
+        @Override
         public void validateObject() throws InvalidObjectException {
             // 有一说一,这个方法独立出来之后,构造函数也该调用
             if (0L == l) {
