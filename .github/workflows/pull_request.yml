@@ -84,6 +84,9 @@ jobs:
 
       - name: Use java and javac
         run: java -version
+      - name: "Use GNU tar instead BSD tar"
+        shell: cmd
+        run: echo C:\Program Files\Git\usr\bin>>"%GITHUB_PATH%"
 
       - uses: actions/cache@v2
         env:
