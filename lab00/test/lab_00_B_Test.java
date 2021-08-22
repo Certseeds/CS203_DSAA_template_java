@@ -46,15 +46,23 @@ public final class lab_00_B_Test {
         for (int i = 1; i <= 3; i++) {
             redirect.set_path(String.format("0%d.data.in", i), String.format("0%d.test.out", i));
             lab_00_B.output(lab_00_B.cal_warpper(lab_00_B.read()));
-            Pair<String, String> p = redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
-            assertEquals(p.getFirst().length(), p.getSecond().length());
+            Pair<String, String> p =
+                redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
+            assertEquals(p.getFirst()
+                          .length(),
+                p.getSecond()
+                 .length());
             assertEquals(p.getFirst(), p.getSecond());
         }
         for (int i = 1; i <= 3; i++) {
             redirect.set_path(String.format("0%d.data.in", i), String.format("0%d.test.out", i));
             lab_00_B.output(lab_00_B.cal_warpper(lab_00_B.reader()));
-            Pair<String, String> p = redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
-            assertEquals(p.getFirst().length(), p.getSecond().length());
+            Pair<String, String> p =
+                redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
+            assertEquals(p.getFirst()
+                          .length(),
+                p.getSecond()
+                 .length());
             assertEquals(p.getFirst(), p.getSecond());
         }
     }

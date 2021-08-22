@@ -37,7 +37,7 @@ public final class Redirect implements Closeable {
     public void input(String input_path) throws FileNotFoundException {
         fis = new FileInputStream(data_path + input_path);
         System.setIn(fis);
-        //重定向标准输入流到FileInputStream
+        // 重定向标准输入流到FileInputStream
     }
 
     public void output(String output_path) throws FileNotFoundException {

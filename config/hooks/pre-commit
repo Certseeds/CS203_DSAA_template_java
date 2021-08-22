@@ -1,0 +1,6 @@
+#!/bin/sh
+
+gradle clean
+mvn formatter::format
+sleep 1
+git add .

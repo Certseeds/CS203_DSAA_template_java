@@ -1,3 +1,4 @@
+
 // Working program using Reader Class
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -6,8 +7,7 @@ import java.io.IOException;
 // come from https://www.geeksforgeeks.org/fast-io-in-java-in-competitive-programming/
 
 /***
- * DO NOT USE IT DIRECTLY!
- * COPY IT TO YOUR SOURCE FILE
+ * DO NOT USE IT DIRECTLY! COPY IT TO YOUR SOURCE FILE
  */
 public final class Reader {
     private final int BUFFER_SIZE = 1 << 16; // aka 65536
@@ -35,7 +35,7 @@ public final class Reader {
             if (c == '\n') {
                 break;
             }
-            buf[cnt++] = (byte) c;
+            buf[cnt++] = (byte)c;
         }
         return new String(buf, 0, cnt);
     }
@@ -73,8 +73,7 @@ public final class Reader {
         }
         do {
             ret = ret * 10 + c - '0';
-        }
-        while ((c = read()) >= '0' && c <= '9');
+        } while ((c = read()) >= '0' && c <= '9');
         if (neg) {
             return -ret;
         }
@@ -92,8 +91,7 @@ public final class Reader {
         }
         do {
             ret = ret * 10 + c - '0';
-        }
-        while ((c = read()) >= '0' && c <= '9');
+        } while ((c = read()) >= '0' && c <= '9');
         if (c == '.') {
             while ((c = read()) >= '0' && c <= '9') {
                 ret += (c - '0') / (div *= 10);
@@ -123,7 +121,6 @@ public final class Reader {
         dis.close();
     }
 }
-
 
 /**
  * @Github: https://github.com/Certseeds/CS203_DSAA_templalte_java

@@ -1,12 +1,3 @@
-<!--
- * @Github: https://github.com/Certseeds/CS203_DSAA_template_java
- * @Organization: SUSTech
- * @Author: nanoseeds
- * @Date: 2020-07-26 16:30:39
- * @LastEditors: nanoseeds
- * @LastEditTime: 2020-07-26 16:32:12
- * @License: CC-BY-NC-SA_V4_0 or any later version 
- -->
 # Description
 
 Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.

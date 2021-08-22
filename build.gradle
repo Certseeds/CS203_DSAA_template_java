@@ -18,7 +18,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 }
-
 test {
     useJUnitPlatform()
 }
@@ -60,7 +59,30 @@ sourceSets {
         }
     }
 }
-
+task format(type: Exec) {
+    workingDir "${projectDir}"
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine 'cmd', '/c', 'mvn formatter::format'
+    } else {
+        commandLine 'bash', '-c', 'mvn formatter::format'
+    }
+}
+task copyHooks(type: Copy) {
+    println 'copyHooks task begin'
+    from("config/hooks") {
+        include "**"
+    }
+    into ".git/hooks"
+    println 'copyHooks task end'
+}
+build.dependsOn copyHooks
+classes.dependsOn copyHooks
+testClasses.dependsOn copyHooks
+clean.dependsOn copyHooks
+build.dependsOn format
+classes.dependsOn format
+testClasses.dependsOn format
+clean.dependsOn format
 task hello {
     doLast {
         println "hello world!"
@@ -71,3 +93,4 @@ task hello {
         println produce_src_dirs
     }
 }
+

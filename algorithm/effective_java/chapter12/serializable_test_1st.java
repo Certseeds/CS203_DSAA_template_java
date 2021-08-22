@@ -25,8 +25,8 @@ public final class serializable_test_1st {
             System.out.printf("%d begin at %d%n", i, begin);
             final var boomCharArray = bombObjectMaker.apply(i);
             try (InputStream is = new ByteArrayInputStream(boomCharArray);
-                 ObjectInputStream input = new ObjectInputStream(is)) {
-                final var d = (serializableClass) input.readObject();
+                ObjectInputStream input = new ObjectInputStream(is)) {
+                final var d = (serializableClass)input.readObject();
                 // 典中典之嵌套攻击,层数太深,并且每一层都有对象导致的递归地狱
                 // 甚至数量大之后Junit的@Timeout注解都会无效
                 // 耗时指数级上升
@@ -44,7 +44,9 @@ public final class serializable_test_1st {
         for (int i = 0; i < length; i++) {
             var t1 = new HashSet<>();
             var t2 = new HashSet<>();
-            t1.add(UUID.randomUUID().toString().substring(0, 4));
+            t1.add(UUID.randomUUID()
+                       .toString()
+                       .substring(0, 4));
             s1.add(t1);
             s1.add(t2);
             s2.add(t1);

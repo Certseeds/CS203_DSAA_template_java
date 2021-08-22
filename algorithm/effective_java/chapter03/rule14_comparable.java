@@ -13,15 +13,9 @@ public final class rule14_comparable {
     public void test() {
         // final只限制了不能再给comparableList赋值
         // 数组中元素仍可以发生变化
-        final var comparableList = new showComparable[]{
-                showComparable.newCompare(1, 1),
-                showComparable.newCompare(4, 5),
-                showComparable.newCompare(1, 4),
-                showComparable.newCompare(1, 9),
-                showComparable.newCompare(1, 9),
-                showComparable.newCompare(8, 1),
-                showComparable.newCompare(0, 4),
-        };
+        final var comparableList = new showComparable[] {showComparable.newCompare(1, 1),
+            showComparable.newCompare(4, 5), showComparable.newCompare(1, 4), showComparable.newCompare(1, 9),
+            showComparable.newCompare(1, 9), showComparable.newCompare(8, 1), showComparable.newCompare(0, 4),};
         System.out.println(Arrays.toString(comparableList));
         Arrays.sort(comparableList);
         System.out.println(Arrays.toString(comparableList));
@@ -45,12 +39,10 @@ public final class rule14_comparable {
             return new showComparable(x, y);
         }
 
-
         /**
-         * @param o : a object
-         * @return: 如果this比o x更大,或者x想等情况下y更大,则返回1
-         * 若x,y相同,返回0,
-         * 否则返回-1
+         * @param o
+         *            : a object
+         * @return: 如果this比o x更大,或者x想等情况下y更大,则返回1 若x,y相同,返回0, 否则返回-1
          */
         @Override
         public int compareTo(showComparable o) {
@@ -71,14 +63,14 @@ public final class rule14_comparable {
             return -1;
         }
 
-        private static final Comparator<showComparable> OLD_COMPARABLE_COMPARATOR = Comparator
-                .comparingInt((showComparable o) -> o.x) // 需要写类型,不优雅
-                .thenComparing(o -> o.y);
-        private static final Comparator<showComparable> COMPARABLE_COMPARATOR = Comparator
-                .<showComparable>comparingInt(o -> o.x) // 这样剥离类型更优雅
-                .thenComparing(o -> o.y);
+        private static final Comparator<showComparable> OLD_COMPARABLE_COMPARATOR =
+            Comparator.comparingInt((showComparable o) -> o.x) // 需要写类型,不优雅
+                      .thenComparing(o -> o.y);
+        private static final Comparator<showComparable> COMPARABLE_COMPARATOR =
+            Comparator.<showComparable>comparingInt(o -> o.x) // 这样剥离类型更优雅
+                      .thenComparing(o -> o.y);
 
-        //@Override
+        // @Override
         public int compareTo2(showComparable o) {
             // 自反性, 可以保证
             // 对称性, 可以保证
@@ -92,10 +84,9 @@ public final class rule14_comparable {
 
         @Override
         public String toString() {
-            return new StringJoiner(", ", showComparable.class.getSimpleName() + "[", "]")
-                    .add("x=" + x)
-                    .add("y=" + y)
-                    .toString();
+            return new StringJoiner(", ", showComparable.class.getSimpleName() + "[", "]").add("x=" + x)
+                                                                                          .add("y=" + y)
+                                                                                          .toString();
         }
 
         @Override
@@ -105,9 +96,8 @@ public final class rule14_comparable {
             } else if (!(obj instanceof showComparable)) { // 好想用模式匹配语法
                 return false;
             }
-            final var objc = (showComparable) obj;
-            return (objc.x == this.x) &&
-                    (objc.y == this.y);
+            final var objc = (showComparable)obj;
+            return (objc.x == this.x) && (objc.y == this.y);
         }
 
         @Override
@@ -126,4 +116,3 @@ public final class rule14_comparable {
         }
     }
 }
-

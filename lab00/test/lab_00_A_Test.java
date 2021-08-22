@@ -23,18 +23,18 @@ public final class lab_00_A_Test {
     @Order(0)
     @Test
     public void test_0() {
-        assertEquals(0xFFFFFFFF, lab_00_A.cal(new int[] { 0xFFFFFFFE, 1 }));
-        assertEquals(0x00000001, lab_00_A.cal(new int[] { 0x00000000, 1 }));
-        assertEquals(0xFFFFFFF0, lab_00_A.cal(new int[] { 0xFFFFFFEF, 1 }));
+        assertEquals(0xFFFFFFFF, lab_00_A.cal(new int[] {0xFFFFFFFE, 1}));
+        assertEquals(0x00000001, lab_00_A.cal(new int[] {0x00000000, 1}));
+        assertEquals(0xFFFFFFF0, lab_00_A.cal(new int[] {0xFFFFFFEF, 1}));
     }
 
     @Order(1)
     @Test
     public void test_1() {
-        assertEquals(0xFFFFFFFE, lab_00_A.cal(new int[] { 0xFFFFFFFF, -1 }));
-        assertEquals(0xFFFFFFFE, lab_00_A.cal(new int[] { 0xFFFFFFFF, -1 }));
-        assertEquals(0xFFFFFFEE, lab_00_A.cal(new int[] { 0xFFFFFFEF, -1 }));
-        assertEquals(0x12345678 << 1, lab_00_A.cal(new int[] { 0x12345678, 0x12345678 }));
+        assertEquals(0xFFFFFFFE, lab_00_A.cal(new int[] {0xFFFFFFFF, -1}));
+        assertEquals(0xFFFFFFFE, lab_00_A.cal(new int[] {0xFFFFFFFF, -1}));
+        assertEquals(0xFFFFFFEE, lab_00_A.cal(new int[] {0xFFFFFFEF, -1}));
+        assertEquals(0x12345678 << 1, lab_00_A.cal(new int[] {0x12345678, 0x12345678}));
     }
 
     @Order(2)
@@ -43,7 +43,7 @@ public final class lab_00_A_Test {
         for (int i = 0; i < 114; i++) {
             int x = random.nextInt(0x3f3f3f3f);
             int y = random.nextInt(0x3f3f3f3f);
-            assertEquals(x + y, lab_00_A.cal(new int[] { x, y }));
+            assertEquals(x + y, lab_00_A.cal(new int[] {x, y}));
         }
     }
 

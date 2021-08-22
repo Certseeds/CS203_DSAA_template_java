@@ -38,12 +38,13 @@ jobs:
 
       - uses: actions/cache@v2.1.6
         env:
-          cache-name: cache-maven-modules
+          cache-name: cache-maven-gradle-modules
         with:
           path: |
+            ~/.m2
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-build-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-gradle-build-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties','pom.xml', '**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-

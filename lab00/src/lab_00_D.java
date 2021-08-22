@@ -7,13 +7,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 public final class lab_00_D {
-    private static final Map.Entry<Integer, String>[] spis = new Map.Entry[]{
-            new AbstractMap.SimpleImmutableEntry<>(2, "+---+"),
-            new AbstractMap.SimpleImmutableEntry<>(1, "/   /|"),
-            new AbstractMap.SimpleImmutableEntry<>(0, "+---+ |"),
-            new AbstractMap.SimpleImmutableEntry<>(0, "|   | +"),
-            new AbstractMap.SimpleImmutableEntry<>(0, "|   |/"),
-            new AbstractMap.SimpleImmutableEntry<>(0, "+---+")};
+    private static final Map.Entry<Integer, String>[] spis = new Map.Entry[] {
+        new AbstractMap.SimpleImmutableEntry<>(2, "+---+"), new AbstractMap.SimpleImmutableEntry<>(1, "/   /|"),
+        new AbstractMap.SimpleImmutableEntry<>(0, "+---+ |"), new AbstractMap.SimpleImmutableEntry<>(0, "|   | +"),
+        new AbstractMap.SimpleImmutableEntry<>(0, "|   |/"), new AbstractMap.SimpleImmutableEntry<>(0, "+---+")};
+
     public static int[][] read() {
         Scanner input = new Scanner(System.in);
         final int m = input.nextInt();
@@ -40,18 +38,21 @@ public final class lab_00_D {
         return will_return;
     }
 
-
     public static void print(char[][] map, int a, int b) {
         for (int i = 0; i < spis.length; i++) {
-            for (int j = 0; j < spis[i].getValue().length(); j++) {
-                map[a - 1 + i][b + j + spis[i].getKey()] = spis[i].getValue().charAt(j);
+            for (int j = 0; j < spis[i].getValue()
+                                       .length();
+                j++) {
+                map[a - 1 + i][b + j + spis[i].getKey()] = spis[i].getValue()
+                                                                  .charAt(j);
             }
         }
     }
 
     public static void cal(int[][] hi) {
         final char[][] out = new char[302][301];
-        Arrays.stream(out).forEach(a -> Arrays.fill(a, '.'));
+        Arrays.stream(out)
+              .forEach(a -> Arrays.fill(a, '.'));
         final int m = hi.length - 1;
         final int n = hi[0].length - 1;
         final int wide = 4 * n + 2 * m + 1;
@@ -113,7 +114,7 @@ final class Reader_00_D {
             if (c == '\n') {
                 break;
             }
-            buf[cnt++] = (byte) c;
+            buf[cnt++] = (byte)c;
         }
         return new String(buf, 0, cnt);
     }
@@ -151,8 +152,7 @@ final class Reader_00_D {
         }
         do {
             ret = ret * 10 + c - '0';
-        }
-        while ((c = read()) >= '0' && c <= '9');
+        } while ((c = read()) >= '0' && c <= '9');
         if (neg) {
             return -ret;
         }
@@ -170,8 +170,7 @@ final class Reader_00_D {
         }
         do {
             ret = ret * 10 + c - '0';
-        }
-        while ((c = read()) >= '0' && c <= '9');
+        } while ((c = read()) >= '0' && c <= '9');
         if (c == '.') {
             while ((c = read()) >= '0' && c <= '9') {
                 ret += (c - '0') / (div *= 10);

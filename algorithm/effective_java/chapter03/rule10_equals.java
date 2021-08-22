@@ -45,10 +45,9 @@ public class rule10_equals {
             } else if (!(obj instanceof rule10_equals_class)) { // 好想用模式匹配语法
                 return false;
             }
-            final var objc = (rule10_equals_class) obj;
-            return (objc.x == this.x) &&
-                    (objc.y == this.y) &&
-                    (objc.z == this.z) && Double.compare(objc.time, this.time) == 0;
+            final var objc = (rule10_equals_class)obj;
+            return (objc.x == this.x) && (objc.y == this.y) && (objc.z == this.z)
+                && Double.compare(objc.time, this.time) == 0;
         }
 
         @Override

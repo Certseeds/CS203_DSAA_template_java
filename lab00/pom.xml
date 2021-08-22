@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>onlyformat</groupId>
+        <artifactId>onlyformat</artifactId>
+        <version>onlyformat</version>
+    </parent>
+    <artifactId>onlyformat-lab00</artifactId>
+    <name>${project.artifactId}</name>
+    <description>${project.artifactId}</description>
+    <packaging>pom</packaging>
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <configuration>
+                    <configFile>
+                        ${project.parent.basedir}/config/alip3c.xml
+                    </configFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

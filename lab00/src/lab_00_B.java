@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public final class lab_00_B {
     public static long[] read() {
-        final var  input = new Scanner(System.in);
+        final var input = new Scanner(System.in);
         final int test_number = input.nextInt();
         final long[] will_return = new long[test_number];
         for (int i = 0; i < test_number; i++) {
@@ -23,7 +23,6 @@ public final class lab_00_B {
         }
         return will_return;
     }
-
 
     static long[] cal_warpper(long[] nums) {
         for (int i = 0; i < nums.length; i++) {
@@ -87,7 +86,7 @@ final class Reader_00_B {
             if (c == '\n') {
                 break;
             }
-            buf[cnt++] = (byte) c;
+            buf[cnt++] = (byte)c;
         }
         return new String(buf, 0, cnt);
     }
@@ -125,8 +124,7 @@ final class Reader_00_B {
         }
         do {
             ret = ret * 10 + c - '0';
-        }
-        while ((c = read()) >= '0' && c <= '9');
+        } while ((c = read()) >= '0' && c <= '9');
         if (neg) {
             return -ret;
         }
@@ -144,8 +142,7 @@ final class Reader_00_B {
         }
         do {
             ret = ret * 10 + c - '0';
-        }
-        while ((c = read()) >= '0' && c <= '9');
+        } while ((c = read()) >= '0' && c <= '9');
         if (c == '.') {
             while ((c = read()) >= '0' && c <= '9') {
                 ret += (c - '0') / (div *= 10);

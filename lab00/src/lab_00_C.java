@@ -28,7 +28,7 @@ public final class lab_00_C {
     }
 
     public static int[][] reader() throws IOException {
-        final var  input = new Reader_00_C();
+        final var input = new Reader_00_C();
         final int node_number = input.nextInt();
         final int[][] will_return = new int[node_number][];
         for (int i = 0; i < node_number; i++) {
@@ -111,7 +111,7 @@ final class Reader_00_C {
             if (c == '\n') {
                 break;
             }
-            buf[cnt++] = (byte) c;
+            buf[cnt++] = (byte)c;
         }
         return new String(buf, 0, cnt);
     }
@@ -149,8 +149,7 @@ final class Reader_00_C {
         }
         do {
             ret = ret * 10 + c - '0';
-        }
-        while ((c = read()) >= '0' && c <= '9');
+        } while ((c = read()) >= '0' && c <= '9');
         if (neg) {
             return -ret;
         }
@@ -168,8 +167,7 @@ final class Reader_00_C {
         }
         do {
             ret = ret * 10 + c - '0';
-        }
-        while ((c = read()) >= '0' && c <= '9');
+        } while ((c = read()) >= '0' && c <= '9');
         if (c == '.') {
             while ((c = read()) >= '0' && c <= '9') {
                 ret += (c - '0') / (div *= 10);

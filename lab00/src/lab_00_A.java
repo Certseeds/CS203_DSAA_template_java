@@ -4,16 +4,17 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public final class lab_00_A {
-    public static int[] read(){
+    public static int[] read() {
         final int[] will_return = new int[2];
-        final var  input = new Scanner(System.in);
+        final var input = new Scanner(System.in);
         will_return[0] = input.nextInt();
         will_return[1] = input.nextInt();
         return will_return;
     }
+
     public static int[] reader() throws IOException {
         final int[] will_return = new int[2];
-        final var  input = new Reader_00_A();
+        final var input = new Reader_00_A();
         will_return[0] = input.nextInt();
         will_return[1] = input.nextInt();
         return will_return;
@@ -37,7 +38,6 @@ public final class lab_00_A {
 }
 
 // Working program using Reader Class
-
 
 // come from https://www.geeksforgeeks.org/fast-io-in-java-in-competitive-programming/
 final class Reader_00_A {
@@ -65,7 +65,7 @@ final class Reader_00_A {
             if (c == '\n') {
                 break;
             }
-            buf[cnt++] = (byte) c;
+            buf[cnt++] = (byte)c;
         }
         return new String(buf, 0, cnt);
     }
@@ -103,8 +103,7 @@ final class Reader_00_A {
         }
         do {
             ret = ret * 10 + c - '0';
-        }
-        while ((c = read()) >= '0' && c <= '9');
+        } while ((c = read()) >= '0' && c <= '9');
         if (neg) {
             return -ret;
         }
@@ -122,8 +121,7 @@ final class Reader_00_A {
         }
         do {
             ret = ret * 10 + c - '0';
-        }
-        while ((c = read()) >= '0' && c <= '9');
+        } while ((c = read()) >= '0' && c <= '9');
         if (c == '.') {
             while ((c = read()) >= '0' && c <= '9') {
                 ret += (c - '0') / (div *= 10);

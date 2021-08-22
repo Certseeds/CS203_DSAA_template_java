@@ -78,9 +78,9 @@ public final class StandardSerializableClassTest {
     public void showLegal() throws IOException, ClassNotFoundException {
         final var byteArray = getObject(List.of());
         try (InputStream is = new ByteArrayInputStream(byteArray);
-             ObjectInputStream input = new ObjectInputStream(is)) {
+            ObjectInputStream input = new ObjectInputStream(is)) {
             Assertions.assertThrows(InvalidObjectException.class, () -> {
-                final var d = (StandardSerializableClass) input.readObject();
+                final var d = (StandardSerializableClass)input.readObject();
             });
         }
         System.out.println(byteArray.length);
@@ -90,8 +90,8 @@ public final class StandardSerializableClassTest {
     public void showIegella() throws IOException, ClassNotFoundException {
         final var byteArray = getObject(List.of(1L, 2L, 3L));
         try (InputStream is = new ByteArrayInputStream(byteArray);
-             ObjectInputStream input = new ObjectInputStream(is)) {
-            final var d = (StandardSerializableClass) input.readObject();
+            ObjectInputStream input = new ObjectInputStream(is)) {
+            final var d = (StandardSerializableClass)input.readObject();
         }
         System.out.println(byteArray.length);
     }

@@ -62,13 +62,9 @@ public final class lab_00_C_Test {
     @Test
     public void test_03() throws FileNotFoundException {
         // java内部没pair,凑合拿这个当pair吧.
-        final Pair<String, Boolean>[] results = new Pair[]{
-                new Pair<>("01.data.in", false),
-                new Pair<>("02.data.in", true),
-                new Pair<>("03.data.in", true),
-                new Pair<>("04.data.in", false),
-                new Pair<>("05.data.in", false)
-        };
+        final Pair<String, Boolean>[] results =
+            new Pair[] {new Pair<>("01.data.in", false), new Pair<>("02.data.in", true), new Pair<>("03.data.in", true),
+                new Pair<>("04.data.in", false), new Pair<>("05.data.in", false)};
         for (var me : results) {
             redirect.set_path(me.getFirst());
             assertEquals(lab_00_C.cal(lab_00_C.read()), me.getSecond());
@@ -79,18 +75,20 @@ public final class lab_00_C_Test {
     @Test
     public void test_04() throws IOException {
         // java内部没pair,凑合拿这个当pair吧.
-        final Quaternion<String, String, String, Boolean>[] results = new Quaternion[]{
-                new Quaternion<>("01.data.in", "01.data.out", "01.test.out", false),
+        final Quaternion<String, String, String, Boolean>[] results =
+            new Quaternion[] {new Quaternion<>("01.data.in", "01.data.out", "01.test.out", false),
                 new Quaternion<>("02.data.in", "02.data.out", "02.test.out", true),
                 new Quaternion<>("03.data.in", "03.data.out", "03.test.out", true),
                 new Quaternion<>("04.data.in", "04.data.out", "04.test.out", false),
-                new Quaternion<>("05.data.in", "05.data.out", "05.test.out", false)
-        };
+                new Quaternion<>("05.data.in", "05.data.out", "05.test.out", false)};
         for (Quaternion<String, String, String, Boolean> q : results) {
             redirect.set_path(q.getFirst(), q.getThird());
             lab_00_C.main(init_String);
             Pair<String, String> p = redirect.compare_double(q.getSecond(), q.getThird());
-            assertEquals(p.getFirst().length(), p.getSecond().length());
+            assertEquals(p.getFirst()
+                          .length(),
+                p.getSecond()
+                 .length());
             assertEquals(p.getFirst(), p.getSecond());
         }
     }

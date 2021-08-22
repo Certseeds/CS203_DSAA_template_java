@@ -19,6 +19,7 @@ public final class lab_00_D_Test {
     public static void init() {
         redirect = new Redirect(DATA_PATH);
     }
+
     @AfterAll
     public static void last_one() throws IOException {
         redirect.close();
@@ -38,7 +39,10 @@ public final class lab_00_D_Test {
         redirect.set_path("01.data.in", "01.test.out");
         lab_00_D.main(init_String);
         Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out");
-        assertEquals(p.getFirst().length(), p.getSecond().length());
+        assertEquals(p.getFirst()
+                      .length(),
+            p.getSecond()
+             .length());
         assertEquals(p.getFirst(), p.getSecond());
     }
 }
