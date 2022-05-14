@@ -1,0 +1,3 @@
+module tests {
+    exports tests;
+}

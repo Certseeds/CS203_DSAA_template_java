@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -x
+
+mvn clean compile test
+sleep 1
+git add .
+

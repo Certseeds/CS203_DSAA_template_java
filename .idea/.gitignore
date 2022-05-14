@@ -1,0 +1,7 @@
+*.xml
+misc.xml
+workspace.xml
+!vcs.xml
+!compiler.xml
+!encodings.xml
+!.gitignore
