@@ -1,16 +1,15 @@
+// SPDX-License-Identifier: MIT
+
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public final class Main {
-    private static final Map.Entry<Integer, String>[] spis = new Map.Entry[] {
-        new AbstractMap.SimpleImmutableEntry<>(2, "+---+"), new AbstractMap.SimpleImmutableEntry<>(1, "/   /|"),
-        new AbstractMap.SimpleImmutableEntry<>(0, "+---+ |"), new AbstractMap.SimpleImmutableEntry<>(0, "|   | +"),
-        new AbstractMap.SimpleImmutableEntry<>(0, "|   |/"), new AbstractMap.SimpleImmutableEntry<>(0, "+---+")};
+    private static final List<Map.Entry<Integer, String>> spis =
+        List.of(new AbstractMap.SimpleImmutableEntry<>(2, "+---+"), new AbstractMap.SimpleImmutableEntry<>(1, "/   /|"),
+            new AbstractMap.SimpleImmutableEntry<>(0, "+---+ |"), new AbstractMap.SimpleImmutableEntry<>(0, "|   | +"),
+            new AbstractMap.SimpleImmutableEntry<>(0, "|   |/"), new AbstractMap.SimpleImmutableEntry<>(0, "+---+"));
 
     public static int[][] read() {
         Scanner input = new Scanner(System.in);
@@ -26,25 +25,29 @@ public final class Main {
     }
 
     public static int[][] reader() throws IOException {
-        Reader input = new Reader();
-        final int m = input.nextInt();
-        final int n = input.nextInt();
-        int[][] will_return = new int[m + 1][n + 1];
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                will_return[i][j] = input.nextInt();
+        try (final var input = new Reader();) {
+            final int m = input.nextInt();
+            final int n = input.nextInt();
+            int[][] will_return = new int[m + 1][n + 1];
+            for (int i = 1; i <= m; i++) {
+                for (int j = 1; j <= n; j++) {
+                    will_return[i][j] = input.nextInt();
+                }
             }
+            return will_return;
         }
-        return will_return;
     }
 
     public static void print(char[][] map, int a, int b) {
-        for (int i = 0; i < spis.length; i++) {
-            for (int j = 0; j < spis[i].getValue()
-                                       .length();
+        for (int i = 0; i < spis.size(); i++) {
+            for (int j = 0; j < spis.get(i)
+                                    .getValue()
+                                    .length();
                 j++) {
-                map[a - 1 + i][b + j + spis[i].getKey()] = spis[i].getValue()
-                                                                  .charAt(j);
+                map[a - 1 + i][b + j + spis.get(i)
+                                           .getKey()] = spis.get(i)
+                                                            .getValue()
+                                                            .charAt(j);
             }
         }
     }

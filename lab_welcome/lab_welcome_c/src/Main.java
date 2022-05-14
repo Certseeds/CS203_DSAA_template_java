@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,17 +29,18 @@ public final class Main {
     }
 
     public static int[][] reader() throws IOException {
-        final var input = new Reader();
-        final int node_number = input.nextInt();
-        final int[][] will_return = new int[node_number][];
-        for (int i = 0; i < node_number; i++) {
-            final int connects = input.nextInt();
-            will_return[i] = new int[connects];
-            for (int j = 0; j < connects; j++) {
-                will_return[i][j] = input.nextInt();
+        try (final var input = new Reader();) {
+            final int node_number = input.nextInt();
+            final int[][] will_return = new int[node_number][];
+            for (int i = 0; i < node_number; i++) {
+                final int connects = input.nextInt();
+                will_return[i] = new int[connects];
+                for (int j = 0; j < connects; j++) {
+                    will_return[i][j] = input.nextInt();
+                }
             }
+            return will_return;
         }
-        return will_return;
     }
 
     public static void main(String[] args) {

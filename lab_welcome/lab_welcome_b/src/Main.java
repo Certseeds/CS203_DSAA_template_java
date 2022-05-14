@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,13 +17,14 @@ public final class Main {
     }
 
     public static long[] reader() throws IOException {
-        final var Reader = new Reader();
-        final int test_number = Reader.nextInt();
-        final long[] will_return = new long[test_number];
-        for (int i = 0; i < will_return.length; i++) {
-            will_return[i] = Reader.nextInt();
+        try (final var Reader = new Reader();) {
+            final int test_number = Reader.nextInt();
+            final long[] will_return = new long[test_number];
+            for (int i = 0; i < will_return.length; i++) {
+                will_return[i] = Reader.nextInt();
+            }
+            return will_return;
         }
-        return will_return;
     }
 
     static long[] cal_warpper(long[] nums) {

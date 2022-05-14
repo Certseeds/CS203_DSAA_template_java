@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import org.junit.jupiter.api.*;
 import tests.Redirect;
 
