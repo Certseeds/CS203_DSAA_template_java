@@ -3,7 +3,7 @@ name: Bug report
 about: Create an issue that documents a bug
 title: ''
 labels: ''
-assignees: ''
+assignees: Certseeds
 
 ---
 

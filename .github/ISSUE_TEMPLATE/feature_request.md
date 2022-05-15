@@ -3,7 +3,7 @@ name: Feature request
 about: Create an issue that requests a feature or other improvement
 title: ''
 labels: ''
-assignees: ''
+assignees: Certseeds
 
 ---
 
