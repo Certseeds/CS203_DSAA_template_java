@@ -33,3 +33,6 @@ build/
 .DS_Store
 
 *.test.out
+*.jar
+*.war
+*.zip

@@ -1,0 +1,16 @@
+
+</modules>
+<repositories>
+    <repository>
+        <id>ali-maven</id>
+        <name>ali-yun-maven</name>
+        <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+</project>
