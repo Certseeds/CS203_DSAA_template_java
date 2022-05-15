@@ -1,0 +1,46 @@
+name: Feature request
+description: Create an issue that requests a feature or other improvement
+title: "[Feature-Requeest]: "
+labels: ["enhancement"]
+assignees:
+  - Certseeds
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+
+  - type: textarea
+    id: Description
+    attributes:
+      label: What's the Feature request?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you want!
+      value: "A New Feature: "
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+      description: Add any other context or screenshots about the feature request here.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/Certseeds/CS203_DSAA_template_java/blob/master/.github/code_of_conduct.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
