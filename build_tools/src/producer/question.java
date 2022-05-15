@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class question {
-    private static final String Main = file_producer.read_file("template/java_template.java");
-    private static final String MainTest = file_producer.read_file("template/java_test_template.java");
+    private static final String Main =
+        constant.FILE_HEADER_STR + file_producer.read_file("template/java_template.java");
+    private static final String MainTest =
+        constant.FILE_HEADER_STR + file_producer.read_file("template/java_test_template.java");
     private final String lab_number, ques_number;
     private final String sub_sub_pom;
 

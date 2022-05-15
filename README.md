@@ -61,7 +61,7 @@
   ``` java
       Redirect redirect = new Redirect(DATA_PATH); // 设定目录，DATA_PATH在文件里有定义
       redirect.set_path("01.data.in", "01.test.out"); // 重定向输入
-      lab_00_B.output(lab_00_B.cal_warpper(lab_00_B.read())); // 执行
+      Main.output(Main.cal_warpper(Main.read())); // 执行
       Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out"); // 获取两个文件中的字符串
       assertEquals(p.getFirst().length(), p.getSecond().length()); // 比较长度
       assertEquals(p.getFirst(), p.getSecond()); // 比较文本
@@ -80,7 +80,7 @@
 + 这种情况下,使用c++的重定向输出就可以较为方便的对输入进行处理,同时保存输出方便调试.
   ``` java
       redirect.set_path("01.data.in", "01.test.out");
-      lab_00_D.main(init_String);
+      Main.main(init_String);
       Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out");
       assertEquals(p.getFirst().length(), p.getSecond().length());
       assertEquals(p.getFirst(), p.getSecond());

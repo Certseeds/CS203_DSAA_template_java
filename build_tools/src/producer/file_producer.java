@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 public final class file_producer {
 
-    public static final List<String> labs = List.of("01");
-    public static final List<String> problem_order = List.of("A");
+    public static final List<String> labs = List.of("01", "02", "03", "04", "05", "06", "07", "08", "09", "bonus");
+    public static final List<String> problem_order = List.of("A", "B", "C", "D", "E", "F", "G", "H");
     public static final List<String> test_datas = List.of("01");
 
     // labs = List.of("00"),
@@ -34,8 +34,8 @@ public final class file_producer {
                 ques.writeFile();
             }
         }
-        // System.out.println("produce files finish");
-        // System.out.printf("%d files is produces", labs.size() * problem_order.size() * 2);
+        System.out.println("produce files finish");
+        System.out.printf("%d files is produces", labs.size() * problem_order.size() * 2);
     }
 
     static final Consumer<String> ensureAndCreate = (String str) -> {
