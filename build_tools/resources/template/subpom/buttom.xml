@@ -1,13 +1,11 @@
-
-        </modules>
-<dependencies>
-<dependency>
-    <groupId>nanoseeds.CS203_DSAA_template_java</groupId>
-    <artifactId>test_include_package</artifactId>
-    <version>${revision}</version>
-    <scope>test</scope>
-</dependency>
-</dependencies>
-<build>
-</build>
-        </project>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>nanoseeds.CS203_DSAA_template_java</groupId>
+            <artifactId>test_include_package</artifactId>
+            <version>${revision}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build></build>
+</project>

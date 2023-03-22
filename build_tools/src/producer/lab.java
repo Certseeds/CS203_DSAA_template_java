@@ -21,7 +21,7 @@ public final class lab {
     }
 
     public String subPom() {
-        return String.format("<module>lab_%1$s</module>\n", lab_order);
+        return String.format("        <module>lab_%1$s</module>\n", lab_order);
     }
 
     public List<question> getQues_order() {
