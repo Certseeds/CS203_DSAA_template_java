@@ -7,6 +7,7 @@
         <groupId>nanoseeds.CS203_DSAA_template_java</groupId>
         <artifactId>lab_welcome</artifactId>
         <version>${revision}</version>
+        <relativePath>./../pom.xml</relativePath>
     </parent>
     <groupId>nanoseeds.CS203_DSAA_template_java.welcome</groupId>
     <artifactId>lab_welcome_c</artifactId>
