@@ -1,18 +1,10 @@
-<!--
- * @Github: https://github.com/Certseeds/CS203_DSAA_template_java
- * @Organization: SUSTech
- * @Author: nanoseeds
- * @Date: 2020-07-15 23:52:04
- * @LastEditors: nanoseeds
- * @LastEditTime: 2021-08-15 18:02:58
- * @License: CC-BY-NC-SA_V4_0 or any later version 
- -->
-# CS203_DSAA_template_Java  
+# CS203_DSAA_template_Java
+
 # CS203_数据结构与算法分析_代码模板_Java
 
 1. 所有代码(*.cpp,*.hpp,etc)基于MIT协议:限制最少的主流开源协议,
     + 在署名的前提下,
-    + 允许他人以任何方式使用,  
+    + 允许他人以任何方式使用,
     + 同时原作者不承担任何风险.
     + 具体内容请看[`LICENSE_MIT.md`](./LICENSE_MIT.md)
 

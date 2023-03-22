@@ -43,32 +43,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
             </plugin>
-            <plugin>
-                <groupId>com.rudikershaw.gitbuildhook</groupId>
-                <artifactId>git-build-hook-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <gitConfig>
-                        <!-- The location of the directory you are using to store the Git hooks in your project. -->
-                        <core.hooksPath>build_tools/hooks/</core.hooksPath>
-                        <!-- Some other project specific git config that you want to set. -->
-                        <custom.configuration>true</custom.configuration>
-                    </gitConfig>
-                    <installHooks>
-                        <!-- The location of a git hook to install into the default hooks directory. -->
-                        <pre-commit>build_tools/hooks/pre-commit</pre-commit>
-                    </installHooks>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <!-- Sets git config specified under configuration > gitConfig. -->
-                            <goal>configure</goal>
-                            <goal>initialize</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 

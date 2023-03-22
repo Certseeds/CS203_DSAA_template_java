@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -x
+main() {
+    chmod +x ./mvnw
+    ./mvnw clean
+    ./mvnw compile
+    ./mvnw test
+    sleep 1
+    git add .
+}
+main
