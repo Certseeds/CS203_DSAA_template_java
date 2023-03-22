@@ -1,25 +1,31 @@
 // SPDX-License-Identifier: MIT
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import tests.Redirect;
 
 import java.io.IOException;
 import java.util.Random;
 
+@Slf4j
 public final class MainTest {
     private static final String DATA_PATH = "resources/";
     private static final long begin_time = System.currentTimeMillis();
     private static final Random random = new Random();
-    private Redirect redirect;
 
     @AfterAll
     public static void last_one() throws IOException {
-        System.out.printf("cost %d ms%n", System.currentTimeMillis() - begin_time);
+        log.info("cost {} ms\n", System.currentTimeMillis() - begin_time);
     }
 
     @BeforeEach
-    public void init() {
-        redirect = new Redirect(DATA_PATH);
+    public void beforeEach(TestInfo testInfo) {
+        log.info("{} begin", testInfo.getDisplayName());
+    }
+
+    @AfterEach
+    public void afterEach(TestInfo testInfo) {
+        log.info("{} end", testInfo.getDisplayName());
     }
 
     @Test
@@ -48,15 +54,12 @@ public final class MainTest {
 
     @Test
     public void test_3() throws IOException {
-        redirect.set_path("01.data.in");
-        Assertions.assertEquals(628, Main.cal(Main.read()));
-
-        redirect.set_path("01.data.in");
-        Assertions.assertEquals(628, Main.cal(Main.reader()));
+        try (Redirect redirect = Redirect.from(DATA_PATH, "01.data.in", "")) {
+            Assertions.assertEquals(628, Main.cal(Main.read()));
+        }
+        try (Redirect redirect = Redirect.from(DATA_PATH, "01.data.in", "")) {
+            Assertions.assertEquals(628, Main.cal(Main.read()));
+        }
     }
 
-    @AfterEach
-    public void last() throws IOException {
-        redirect.close();
-    }
 }

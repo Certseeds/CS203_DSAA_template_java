@@ -51,15 +51,15 @@
 + 而在这里,使用`Redirect`对象,便可以省去手动输入的方式.
 
   ``` java
-      Redirect redirect = new Redirect(DATA_PATH); // 设定目录，DATA_PATH在文件里有定义
-      redirect.set_path("01.data.in", "01.test.out"); // 重定向输入
-      Main.output(Main.cal_warpper(Main.read())); // 执行
-      Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out"); // 获取两个文件中的字符串
-      assertEquals(p.getFirst().length(), p.getSecond().length()); // 比较长度
-      assertEquals(p.getFirst(), p.getSecond()); // 比较文本
+      try (Redirect redirect = Redirect.from(DATA_PATH,"01.data.in", "01.test.out");) {// 设定目录，DATA_PATH在文件里有定义
+          Main.output(Main.cal_warpper(Main.read())); // 执行
+          Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out"); // 获取两个文件中的字符串
+          assertEquals(p.getFirst().length(), p.getSecond().length()); // 比较长度
+          assertEquals(p.getFirst(), p.getSecond()); // 比较文本
+      }
   ```
 
-    只需要准备好输入的数据与结果,就可以从文件中读取,执行后判断结果是否符合预期.   
+    只需要准备好输入的数据与结果,就可以从文件中读取,执行后判断结果是否符合预期.
   + test_1 为最简单的逐个判断,最简单,代码量最大.
   + test_2 则优化了一些,但是还是比较麻烦,for循环还需要了解测试样例的个数.
   + test_3 with tuple 则最优雅,修改起来的难度最小.
@@ -71,14 +71,15 @@
 + 一般来说,题目的输出不会太复杂,但是反例也不是没有.:比如专门考输出的[立体图](./lab_welcome/lab_welcome_d/src/Main.java)
 + 这种情况下,使用c++的重定向输出就可以较为方便的对输入进行处理,同时保存输出方便调试.
   ``` java
-      redirect.set_path("01.data.in", "01.test.out");
-      Main.main(init_String);
-      Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out");
-      assertEquals(p.getFirst().length(), p.getSecond().length());
-      assertEquals(p.getFirst(), p.getSecond());
+      try (Redirect redirect = Redirect.from(DATA_PATH,"01.data.in", "01.test.out");) {// 设定目录，DATA_PATH在文件里有定义
+          Main.main(init_String);
+          final Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out");
+          assertEquals(p.getFirst().length(), p.getSecond().length());
+          assertEquals(p.getFirst(), p.getSecond());
+      }
   ```
-  这样就将标准输出重定向到了01.test.out中,并与01.data.out比对.
-  + 这里需要考虑的是，谨慎使用println(),因为println()的输出与平台有关，print("\n")比较方便和data.out比较.
+  这样就将标准输出重定向到了`01.test.out`中,并与`01.data.out`比对.
+  + 这里需要考虑的是，谨慎使用`println()`,因为`println()`的输出与平台有关，`print("\n")`比较方便和data.out比较.
 
 4. 快读.
 
@@ -104,9 +105,9 @@
 
 1. C++是dalao们的选择
 直接去
-[dalao1](https://acm.sustech.edu.cn/onlinejudge/status.php?user_id=11710724&jresult=4)
-[dalao2](https://acm.sustech.edu.cn/onlinejudge/status.php?user_id=11612908&jresult=4)
-[dalao3](https://acm.sustech.edu.cn/onlinejudge/status.php?user_id=11712510&jresult=4)
++ [dalao1](https://acm.sustech.edu.cn/onlinejudge/status.php?user_id=11710724&jresult=4)
++ [dalao2](https://acm.sustech.edu.cn/onlinejudge/status.php?user_id=11612908&jresult=4)
++ [dalao3](https://acm.sustech.edu.cn/onlinejudge/status.php?user_id=11712510&jresult=4)
 等等dalao的解题页面看看,会发现在排行榜榜首的人,绝大多数题目使用的都是C++.
 
 2. 速度.
