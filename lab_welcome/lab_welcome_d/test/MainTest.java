@@ -36,9 +36,9 @@ public final class MainTest {
         Main.main(init_String);
         Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out");
         Assertions.assertEquals(p.getFirst()
-                                 .length(),
+                .length(),
             p.getSecond()
-             .length());
+                .length());
         Assertions.assertEquals(p.getFirst(), p.getSecond());
     }
 

@@ -51,9 +51,9 @@ public final class MainTest {
             Pair<String, String> p =
                 redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
             Assertions.assertEquals(p.getFirst()
-                                     .length(),
+                    .length(),
                 p.getSecond()
-                 .length());
+                    .length());
             Assertions.assertEquals(p.getFirst(), p.getSecond());
         }
         for (int i = 1; i <= 3; i++) {
@@ -62,9 +62,9 @@ public final class MainTest {
             Pair<String, String> p =
                 redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
             Assertions.assertEquals(p.getFirst()
-                                     .length(),
+                    .length(),
                 p.getSecond()
-                 .length());
+                    .length());
             Assertions.assertEquals(p.getFirst(), p.getSecond());
         }
     }

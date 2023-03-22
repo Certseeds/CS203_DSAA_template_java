@@ -83,9 +83,9 @@ public final class MainTest {
             Main.main(init_String);
             Pair<String, String> p = redirect.compare_double(q.getSecond(), q.getThird());
             Assertions.assertEquals(p.getFirst()
-                                     .length(),
+                    .length(),
                 p.getSecond()
-                 .length());
+                    .length());
             Assertions.assertEquals(p.getFirst(), p.getSecond());
         }
     }

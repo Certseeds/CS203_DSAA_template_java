@@ -9,20 +9,5 @@
 </dependency>
 </dependencies>
 <build>
-<pluginManagement>
-    <plugins>
-        <plugin>
-            <groupId>net.revelc.code.formatter</groupId>
-            <artifactId>formatter-maven-plugin</artifactId>
-            <dependencies>
-                <dependency>
-                    <groupId>nanoseeds.CS203_DSAA_template_java</groupId>
-                    <artifactId>build_tools</artifactId>
-                    <version>${revision}</version>
-                </dependency>
-            </dependencies>
-        </plugin>
-    </plugins>
-</pluginManagement>
 </build>
         </project>

@@ -36,3 +36,4 @@ build/
 *.jar
 *.war
 *.zip
+.ci-friendly-pom.xml

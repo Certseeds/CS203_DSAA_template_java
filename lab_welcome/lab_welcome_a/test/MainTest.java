@@ -24,17 +24,17 @@ public final class MainTest {
 
     @Test
     public void test_0() {
-        Assertions.assertEquals(0xFFFFFFFF, Main.cal(new int[] {0xFFFFFFFE, 1}));
-        Assertions.assertEquals(0x00000001, Main.cal(new int[] {0x00000000, 1}));
-        Assertions.assertEquals(0xFFFFFFF0, Main.cal(new int[] {0xFFFFFFEF, 1}));
+        Assertions.assertEquals(0xFFFFFFFF, Main.cal(new int[]{0xFFFFFFFE, 1}));
+        Assertions.assertEquals(0x00000001, Main.cal(new int[]{0x00000000, 1}));
+        Assertions.assertEquals(0xFFFFFFF0, Main.cal(new int[]{0xFFFFFFEF, 1}));
     }
 
     @Test
     public void test_1() {
-        Assertions.assertEquals(0xFFFFFFFE, Main.cal(new int[] {0xFFFFFFFF, -1}));
-        Assertions.assertEquals(0xFFFFFFFE, Main.cal(new int[] {0xFFFFFFFF, -1}));
-        Assertions.assertEquals(0xFFFFFFEE, Main.cal(new int[] {0xFFFFFFEF, -1}));
-        Assertions.assertEquals(0x12345678 << 1, Main.cal(new int[] {0x12345678, 0x12345678}));
+        Assertions.assertEquals(0xFFFFFFFE, Main.cal(new int[]{0xFFFFFFFF, -1}));
+        Assertions.assertEquals(0xFFFFFFFE, Main.cal(new int[]{0xFFFFFFFF, -1}));
+        Assertions.assertEquals(0xFFFFFFEE, Main.cal(new int[]{0xFFFFFFEF, -1}));
+        Assertions.assertEquals(0x12345678 << 1, Main.cal(new int[]{0x12345678, 0x12345678}));
     }
 
     @Test
@@ -42,7 +42,7 @@ public final class MainTest {
         for (int i = 0; i < 114; i++) {
             int x = random.nextInt(0x3f3f3f3f);
             int y = random.nextInt(0x3f3f3f3f);
-            Assertions.assertEquals(x + y, Main.cal(new int[] {x, y}));
+            Assertions.assertEquals(x + y, Main.cal(new int[]{x, y}));
         }
     }
 

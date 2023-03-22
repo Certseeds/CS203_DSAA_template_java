@@ -113,7 +113,7 @@ public final class Main {
                 if (c == '\n') {
                     break;
                 }
-                buf[cnt++] = (byte)c;
+                buf[cnt++] = (byte) c;
             }
             return new String(buf, 0, cnt);
         }

@@ -20,8 +20,8 @@ public final class file_producer {
 
     public static void main(String[] args) throws IOException {
         final List<lab> LabList = labs.stream()
-                                      .map(x -> new lab(x, problem_order))
-                                      .collect(Collectors.toList());
+            .map(x -> new lab(x, problem_order))
+            .collect(Collectors.toList());
         final base root = new base(LabList);
         root.writeFile();
         for (lab labElement : LabList) {
@@ -49,9 +49,7 @@ public final class file_producer {
     };
 
     public static String read_file(String file_name) {
-        try (final InputStream stream = Thread.currentThread()
-                                              .getContextClassLoader()
-                                              .getResourceAsStream(file_name)) {
+        try (final InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(file_name)) {
             assert (stream != null);
             return new String(stream.readAllBytes(), StandardCharsets.UTF_8);
         } catch (IOException e) {
