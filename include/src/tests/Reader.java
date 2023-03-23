@@ -1,6 +1,7 @@
 package tests;
 
 // Working program using Reader Class
+
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -36,7 +37,7 @@ public final class Reader {
             if (c == '\n') {
                 break;
             }
-            buf[cnt++] = (byte)c;
+            buf[cnt++] = (byte) c;
         }
         return new String(buf, 0, cnt);
     }

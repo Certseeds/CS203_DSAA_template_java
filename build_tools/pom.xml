@@ -7,6 +7,7 @@
         <groupId>nanoseeds</groupId>
         <artifactId>CS203_DSAA_template_java</artifactId>
         <version>${revision}</version>
+        <relativePath>./../pom.xml</relativePath>
     </parent>
     <groupId>nanoseeds.CS203_DSAA_template_java</groupId>
     <artifactId>build_tools</artifactId>
@@ -41,31 +42,6 @@
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>net.revelc.code.formatter</groupId>
-                <artifactId>formatter-maven-plugin</artifactId>
-                <version>${format.version}</version>
-                <configuration>
-                    <directories>
-                        <directory>${project.build.sourceDirectory}</directory>
-                        <directory>${project.build.testSourceDirectory}</directory>
-                    </directories>
-                    <compilerSource>${java.version}</compilerSource>
-                    <compilerCompliance>${java.version}</compilerCompliance>
-                    <compilerTargetPlatform>${java.version}</compilerTargetPlatform>
-                    <encoding>${maven.compiler.encoding}</encoding>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                        <configuration>
-                            <configFile>${project.basedir}/resources/configs/alip3c.xml</configFile>
                         </configuration>
                     </execution>
                 </executions>

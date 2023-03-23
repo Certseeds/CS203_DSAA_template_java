@@ -16,12 +16,12 @@ public final class lab {
     public lab(String lab_order, List<String> ques_order) {
         this.lab_order = lab_order;
         this.ques_order = ques_order.stream()
-                                    .map(x -> new question(lab_order, x))
-                                    .collect(Collectors.toList());
+            .map(x -> new question(lab_order, x))
+            .collect(Collectors.toList());
     }
 
     public String subPom() {
-        return String.format("<module>lab_%1$s</module>\n", lab_order);
+        return String.format("        <module>lab_%1$s</module>\n", lab_order);
     }
 
     public List<question> getQues_order() {

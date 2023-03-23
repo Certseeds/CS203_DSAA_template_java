@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import tests.Pair;
 import tests.Redirect;
@@ -7,24 +8,28 @@ import tests.Redirect;
 import java.io.IOException;
 import java.util.Random;
 
+@Slf4j
 public final class MainTest {
 
-    private static final String[] init_String = new String[0];
     private static final String DATA_PATH = "resources/";
     private static final long begin_time = System.currentTimeMillis();
     private static final Random random = new Random();
-    private Redirect redirect;
 
     @AfterAll
     public static void last_one() throws IOException {
-        System.out.printf("cost %d ms%n", System.currentTimeMillis() - begin_time);
+        log.info("cost {} ms\n", System.currentTimeMillis() - begin_time);
     }
 
     @BeforeEach
-    public void init() {
-        redirect = new Redirect(DATA_PATH);
-        Assertions.assertNotNull(redirect);
+    public void beforeEach(TestInfo testInfo) {
+        log.info("{} begin", testInfo.getDisplayName());
     }
+
+    @AfterEach
+    public void afterEach(TestInfo testInfo) {
+        log.info("{} end", testInfo.getDisplayName());
+    }
+
 
     @Test
     public void test_0() {
@@ -46,31 +51,21 @@ public final class MainTest {
     @Test
     public void test_3() throws IOException {
         for (int i = 1; i <= 3; i++) {
-            redirect.set_path(String.format("0%d.data.in", i), String.format("0%d.test.out", i));
-            Main.output(Main.cal_warpper(Main.read()));
-            Pair<String, String> p =
-                redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
-            Assertions.assertEquals(p.getFirst()
-                                     .length(),
-                p.getSecond()
-                 .length());
-            Assertions.assertEquals(p.getFirst(), p.getSecond());
+            try (Redirect redirect = Redirect.from(DATA_PATH, String.format("0%d.data.in", i), String.format("0%d.test.out", i))) {
+                Main.output(Main.cal_warpper(Main.read()));
+                final Pair<String, String> p = redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
+                Assertions.assertEquals(p.getFirst().length(), p.getSecond().length());
+                Assertions.assertEquals(p.getFirst(), p.getSecond());
+            }
         }
         for (int i = 1; i <= 3; i++) {
-            redirect.set_path(String.format("0%d.data.in", i), String.format("0%d.test.out", i));
-            Main.output(Main.cal_warpper(Main.reader()));
-            Pair<String, String> p =
-                redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
-            Assertions.assertEquals(p.getFirst()
-                                     .length(),
-                p.getSecond()
-                 .length());
-            Assertions.assertEquals(p.getFirst(), p.getSecond());
+            try (Redirect redirect = Redirect.from(DATA_PATH, String.format("0%d.data.in", i), String.format("0%d.test.out", i))) {
+                Main.output(Main.cal_warpper(Main.reader()));
+                final Pair<String, String> p = redirect.compare_double(String.format("0%d.data.out", i), String.format("0%d.test.out", i));
+                Assertions.assertEquals(p.getFirst().length(), p.getSecond().length());
+                Assertions.assertEquals(p.getFirst(), p.getSecond());
+            }
         }
     }
 
-    @AfterEach
-    public void last() throws IOException {
-        redirect.close();
-    }
 }

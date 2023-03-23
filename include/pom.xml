@@ -7,6 +7,7 @@
         <groupId>nanoseeds</groupId>
         <artifactId>CS203_DSAA_template_java</artifactId>
         <version>${revision}</version>
+        <relativePath>./../pom.xml</relativePath>
     </parent>
     <groupId>nanoseeds.CS203_DSAA_template_java</groupId>
     <artifactId>test_include_package</artifactId>
@@ -15,20 +16,17 @@
     <description>${project.groupId}.${project.artifactId}</description>
     <build>
         <sourceDirectory>${project.basedir}/src</sourceDirectory>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>net.revelc.code.formatter</groupId>
-                    <artifactId>formatter-maven-plugin</artifactId>
-                    <dependencies>
-                        <dependency>
-                            <groupId>nanoseeds.CS203_DSAA_template_java</groupId>
-                            <artifactId>build_tools</artifactId>
-                            <version>${revision}</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>2.0.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+        </dependency>
+    </dependencies>
 </project>

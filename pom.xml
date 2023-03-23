@@ -10,8 +10,7 @@
     <name>${project.artifactId}</name>
     <description>${project.artifactId}</description>
     <properties>
-        <revision>0.0.1</revision>
-        <format.version>2.18.0</format.version>
+        <revision>0.0.2</revision>
         <maven-surefire-plugin.version>3.0.0-M6</maven-surefire-plugin.version>
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -37,15 +36,6 @@
         </dependency>
     </dependencies>
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>net.revelc.code.formatter</groupId>
-                    <artifactId>formatter-maven-plugin</artifactId>
-                    <version>${format.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -53,52 +43,15 @@
                 <version>${maven-surefire-plugin.version}</version>
             </plugin>
             <plugin>
-                <groupId>net.revelc.code.formatter</groupId>
-                <artifactId>formatter-maven-plugin</artifactId>
-                <version>${format.version}</version>
-                <configuration>
-                    <directories>
-                        <directory>${project.build.sourceDirectory}</directory>
-                        <directory>${project.build.testSourceDirectory}</directory>
-                    </directories>
-                    <compilerSource>${java.version}</compilerSource>
-                    <compilerCompliance>${java.version}</compilerCompliance>
-                    <compilerTargetPlatform>${java.version}</compilerTargetPlatform>
-                    <encoding>${maven.compiler.encoding}</encoding>
-                </configuration>
+                <groupId>com.outbrain.swinfra</groupId>
+                <artifactId>ci-friendly-flatten-maven-plugin</artifactId>
+                <version>1.0.16</version>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>format</goal>
-                        </goals>
-                        <configuration>
-                            <configFile>configs/alip3c.xml</configFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.rudikershaw.gitbuildhook</groupId>
-                <artifactId>git-build-hook-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <gitConfig>
-                        <!-- The location of the directory you are using to store the Git hooks in your project. -->
-                        <core.hooksPath>build_tools/hooks/</core.hooksPath>
-                        <!-- Some other project specific git config that you want to set. -->
-                        <custom.configuration>true</custom.configuration>
-                    </gitConfig>
-                    <installHooks>
-                        <!-- The location of a git hook to install into the default hooks directory. -->
-                        <pre-commit>build_tools/hooks/pre-commit</pre-commit>
-                    </installHooks>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <!-- Sets git config specified under configuration > gitConfig. -->
-                            <goal>configure</goal>
-                            <goal>initialize</goal>
+                            <goal>clean</goal><!-- Ensure proper cleanup. Will run on clean phase-->
+                            <!-- Enable ci-friendly version resolution. Will run on process-resources phase-->
+                            <goal>flatten</goal>
                         </goals>
                     </execution>
                 </executions>

@@ -41,13 +41,13 @@ public final class Main {
     public static void print(char[][] map, int a, int b) {
         for (int i = 0; i < spis.size(); i++) {
             for (int j = 0; j < spis.get(i)
-                                    .getValue()
-                                    .length();
-                j++) {
+                .getValue()
+                .length();
+                 j++) {
                 map[a - 1 + i][b + j + spis.get(i)
-                                           .getKey()] = spis.get(i)
-                                                            .getValue()
-                                                            .charAt(j);
+                    .getKey()] = spis.get(i)
+                    .getValue()
+                    .charAt(j);
             }
         }
     }
@@ -55,7 +55,7 @@ public final class Main {
     public static void cal(int[][] hi) {
         final char[][] out = new char[302][301];
         Arrays.stream(out)
-              .forEach(a -> Arrays.fill(a, '.'));
+            .forEach(a -> Arrays.fill(a, '.'));
         final int m = hi.length - 1;
         final int n = hi[0].length - 1;
         final int wide = 4 * n + 2 * m + 1;
@@ -68,8 +68,8 @@ public final class Main {
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 for (int k = 0; k < hi[i][j]; k++) {
-                    int x = h - 3 * (k + 2) - 2 * (m - i) + 1;
-                    int y = 4 * j + 2 * (m - i - 1) - 1;
+                    final int x = h - 3 * (k + 2) - 2 * (m - i) + 1;
+                    final int y = 4 * j + 2 * (m - i - 1) - 1;
                     print(out, x, y);
                 }
             }
@@ -116,7 +116,7 @@ public final class Main {
                 if (c == '\n') {
                     break;
                 }
-                buf[cnt++] = (byte)c;
+                buf[cnt++] = (byte) c;
             }
             return new String(buf, 0, cnt);
         }
