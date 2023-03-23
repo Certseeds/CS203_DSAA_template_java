@@ -63,6 +63,7 @@
         <module>build_tools</module>
         <module>include</module>
         <module>lab_welcome</module>
+        <module>lab_example</module>
     </modules>
     <repositories>
         <repository>
