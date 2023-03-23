@@ -12,8 +12,11 @@
 # scripts
 *.sh text eol=lf linguist-detectable=false
 *.bat text eol=crlf linguist-detectable=false
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
 # Java sources
-*.java          text diff=java
+*.java          text diff=java  
 *.gradle        text diff=java
 *.gradle.kts    text diff=java
 

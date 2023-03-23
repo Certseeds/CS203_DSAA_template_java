@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "prepare": "husky install",
-        "preinstall": "npx only-allow pnpm -y"
+        "preinstall": "npx only-allow pnpm -y",
+        "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0 --context changelog.config.ts"
     },
     "keywords": [
         "java",
@@ -16,6 +17,7 @@
     "author": "Certseeds",
     "license": "MIT",
     "devDependencies": {
+        "conventional-changelog-cli": "^2.2.2",
         "husky": "^8.0.3"
     }
 }
