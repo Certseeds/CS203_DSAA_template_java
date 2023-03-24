@@ -20,7 +20,7 @@
     + 针对CS203_dsaa的lab设计的,基于Java11的代码模板仓库,方便同学们进行课程的学习.
     + 同时会提供一些基本的算法框架.
 
-### 如何使用本repo:
+## 如何使用
 
 + 首先请到[release_latest](https://github.com/Certseeds/CS203_DSAA_template_java/releases/latest)下载script_no_need.zip.
 + 将其解压,放到某处.
@@ -29,7 +29,7 @@
   + `lab_${lab_number}/lab_${lab_number}_${ques_number}/src/Main.java`为将要提交的源文件.
   + `lab_${lab_number}/lab_${lab_number}_${ques_number}/test/MainTest.java`为对源文件进行测试的测试文件，目的为方便测试,同时便于分享测试用例.
 
-### 实际场景:
+## 实际场景:
 
 1. A+B: lab_00_A ,测试样例
 
@@ -49,7 +49,7 @@
 + 而在这里,使用`Redirect`对象,便可以省去手动输入的方式.
 
   ``` java
-  try (Redirect redirect = Redirect.from(DATA_PATH,"01.data.in", "01.test.out");) {// 设定目录  DATA_PATH在文件里有定义
+  try (Redirect redirect = Redirect.from(DATA_PATH,"01.data.in", "01.test.out");) {// 设定目录 DATA_PATH在文件里有定义
       Main.output(Main.cal_warpper(Main.read())); // 执行
       final Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out"); // 获取两个文件中的字符串
       assertEquals(p.getFirst().length(), p.getSecond().length()); // 比较长度
@@ -68,14 +68,16 @@
 
 + 一般来说,题目的输出不会太复杂,但是反例也不是没有.:比如专门考输出的[立体图](./lab_welcome/lab_welcome_d/src/Main.java)
 + 这种情况下,使用c++的重定向输出就可以较为方便的对输入进行处理,同时保存输出方便调试.
+
   ``` java
-      try (Redirect redirect = Redirect.from(DATA_PATH,"01.data.in", "01.test.out");) {// 设定目录，DATA_PATH在文件里有定义
-          Main.main(init_String);
-          final Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out");
-          assertEquals(p.getFirst().length(), p.getSecond().length());
-          assertEquals(p.getFirst(), p.getSecond());
-      }
+  try (Redirect redirect = Redirect.from(DATA_PATH,"01.data.in", "01.test.out");) {// 设定目录 DATA_PATH在文件里有定义
+      Main.main(init_String);
+      final Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out");
+      assertEquals(p.getFirst().length(), p.getSecond().length());
+      assertEquals(p.getFirst(), p.getSecond());
+  }
   ```
+
   这样就将标准输出重定向到了`01.test.out`中,并与`01.data.out`比对.
   + 这里需要考虑的是，谨慎使用`println()`,因为`println()`的输出与平台有关，`print("\n")`比较方便和data.out比较.
 
@@ -85,7 +87,7 @@
 + 但是,当数据量上来之后,读取时间不容小看.
 + 所以可以使用每个文件中自带的Reader类来进行快读.
 
-### 为什么要将 `读取` `数据处理` `输出` 分开?
+## 为什么要将 `读取` `数据处理` `输出` 分开?
 
 + 便于理清思路,读完题目之后,不管别的,先把数据读入,输出的函数写好,方便后续写作.
 + 交流代码逻辑的时候不会受到无关逻辑的影响
@@ -93,16 +95,15 @@
 + 便于使用测试.
 + 便于使用替换快读与scanner.
 
-### 为什么要选择Java做题
+## 为什么要选择Java做题
 
 1. SUSTech大一默认用java教学.
 2. java对字符串处理有一些预置方法，挺好用。
 3. 没了，欢迎补充.
 
-### <del>为什么要选择C++做题.</del>
+## <del>为什么要选择C++做题.</del>
 
-1. C++是dalao们的选择
-直接去
+1. C++是dalao们的选择: 直接去
 + [dalao1](https://acm.sustech.edu.cn/onlinejudge/status.php?user_id=11710724&jresult=4)
 + [dalao2](https://acm.sustech.edu.cn/onlinejudge/status.php?user_id=11612908&jresult=4)
 + [dalao3](https://acm.sustech.edu.cn/onlinejudge/status.php?user_id=11712510&jresult=4)
@@ -113,25 +114,25 @@
 + oj内一般java的最大运行时间都会是c++的2倍,显然是暗示速度之间的差别.
 + 其次,C++可以通过一些魔法操作,比如下文的优化等操作再获取一些时间上的优势.
 
-#### 对数据结构的友好性
+### 对数据结构的友好性
 
 DSAA既然内含Data structure,就势必涉及到类似Node,Tree,Graph等等数据结构,这类数据结构使用C++写,比较方便理解.
 
-#### 对算法友好的性能
+### 对算法友好的性能
 
 作者写树和图相关的题目时,最头疼的就是Java的爆栈,有一段时间只要用递归就爆栈,相同算法修改为C++之后问题就消失了.
 
-#### 相关资源的丰富程度
+### 相关资源的丰富程度
 
 不管怎么说,c++是dalao的选择,所以在网络上搜索题目,得到的大多数答案都是C/C++,java的数量很少.
 
-#### 最后
+## 最后
 
 C++的CS203库:[CS203_DSAA_template](https://github.com/Certseeds/CS203_DSAA_template)
 
 TODO: 介绍使用Cyaron 生成数据.
 
-### 可能遇到的问题
+## 可能遇到的问题
 
 1. 提示找不到Jar包.
   请安装maven作为依赖管理的工具.然后在IDEA中`文件`-`打开`-选择`CS203_DSAA_template_java\pom.xml`-确定-作为项目打开.
