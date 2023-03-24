@@ -17,7 +17,6 @@ public final class MainTest {
     private static final String DATA_PATH = "resources/";
     private static final long begin_time = System.currentTimeMillis();
     private static final Random random = new Random();
-    private Redirect redirect;
 
     @AfterAll
     public static void last_one() throws IOException {
