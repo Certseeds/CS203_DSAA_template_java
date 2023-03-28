@@ -18,6 +18,7 @@
     <modules>
         <module>lab_example_1166</module>
         <module>lab_example_1167</module>
+        <module>lab_example_1168</module>
     </modules>
     <dependencies>
         <dependency>
