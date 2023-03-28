@@ -2,11 +2,9 @@
 
 # CS203_数据结构与算法分析_代码模板_Java
 
-1. 所有代码(*.cpp,*.hpp,etc)基于MIT协议:限制最少的主流开源协议,
-    + 在署名的前提下,
-    + 允许他人以任何方式使用,
-    + 同时原作者不承担任何风险.
-    + 具体内容请看[`LICENSE_MIT.md`](./LICENSE_MIT.md)
+1. 所有代码(*.cpp,*.hpp,etc)基于AGPL-3.0-or-later协议:限制最强的主流开源协议,
+    + 从设计上只为了源码交付, 主要是为了保护copyleft.
+    + 具体内容请看[`LICENSE_AGPL-3.0-or-later.md`](./LICENSE_AGPL_V3_0.md)
 
 2. 所有其他文件(主要是*.md)基于CC-BY-NC-SA-4.0(或以后版本)协议.
     + 相同方式共享-署名-非商业性使用的知识共享协议4.0或任何以后版本.
@@ -51,12 +49,12 @@
 + 而在这里,使用`Redirect`对象,便可以省去手动输入的方式.
 
   ``` java
-      try (Redirect redirect = Redirect.from(DATA_PATH,"01.data.in", "01.test.out");) {// 设定目录，DATA_PATH在文件里有定义
-          Main.output(Main.cal_warpper(Main.read())); // 执行
-          Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out"); // 获取两个文件中的字符串
-          assertEquals(p.getFirst().length(), p.getSecond().length()); // 比较长度
-          assertEquals(p.getFirst(), p.getSecond()); // 比较文本
-      }
+  try (Redirect redirect = Redirect.from(DATA_PATH,"01.data.in", "01.test.out");) {// 设定目录  DATA_PATH在文件里有定义
+      Main.output(Main.cal_warpper(Main.read())); // 执行
+      final Pair<String, String> p = redirect.compare_double("01.data.out", "01.test.out"); // 获取两个文件中的字符串
+      assertEquals(p.getFirst().length(), p.getSecond().length()); // 比较长度
+      assertEquals(p.getFirst(), p.getSecond()); // 比较文本
+  }
   ```
 
     只需要准备好输入的数据与结果,就可以从文件中读取,执行后判断结果是否符合预期.
@@ -140,13 +138,13 @@ TODO: 介绍使用Cyaron 生成数据.
 2. maven下载包很慢
   需要给maven 换源 (`pom.xml`中已有换源操作)
 
-[![MIT](https://img.shields.io/badge/License-MIT-orange)][MIT_Link]
+[![AGPL-3.0-or-later](https://img.shields.io/badge/License-AGPL-3.0-or-later-orange)][AGPL-3.0-or-later_Link]
 
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-orange)][cc_by_nc_sa_4_0]
 
 [![CC BY-SA 4.0][cc_by_nc_sa_4_0_image]][cc_by_nc_sa_4_0]
 
-[MIT_Link]: http://opensource.org/licenses/MIT
+[AGPL-3.0-or-later_Link]: http://opensource.org/licenses/AGPL-3.0-or-later
 
 [cc_by_nc_sa_4_0]: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
