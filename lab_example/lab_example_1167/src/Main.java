@@ -48,7 +48,7 @@ public final class Main {
      */
     public static List<Long> cal(List<Integer> nums) {
         final List<Long> memory = new ArrayList<>(1001);
-        // whatever it is, 8-bit long is enough
+        // whatever it is, 4-bytes is enough
         // in most cases no need to use Int for save memory
         memory.add(0L);
         for (int i = 1; i <= 1000; i++) {
