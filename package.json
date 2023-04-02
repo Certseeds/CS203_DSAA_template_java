@@ -1,12 +1,12 @@
 {
     "name": "CS203_DSAA_template_java",
-    "version": "0.0.3-SNAPSHOT",
+    "version": "0.0.3",
     "description": "Template for CS203-DSAA Based on OpenJDK11 and Maven Monorepo",
     "main": "index.js",
     "scripts": {
         "prepare": "husky install",
         "preinstall": "npx only-allow pnpm -y",
-        "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0 --context changelog.config.ts"
+        "changelog": "conventional-changelog -i CHANGELOG.md -s --context changelog.config.ts"
     },
     "keywords": [
         "java",
