@@ -1,20 +1,20 @@
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.io.BufferedReader;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public final class Main {
     public static int[] read() {
-        int[] will_return = new int[2];
-        var input = new Scanner(System.in);
+        final int[] will_return = new int[2];
+        final var input = new Scanner(System.in);
         will_return[0] = input.nextInt();
         will_return[1] = input.nextInt();
         return will_return;
     }
 
     public static int[] reader() throws IOException {
-        int[] will_return = new int[2];
-        var input = new Reader();
+        final int[] will_return = new int[2];
+        final var input = new Reader();
         will_return[0] = input.nextInt();
         will_return[1] = input.nextInt();
         return will_return;
@@ -26,8 +26,8 @@ public final class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        int[] datas = reader();
-        int result = cal(datas);
+        final int[] datas = reader();
+        final int result = cal(datas);
         output(result);
     }
 
@@ -37,126 +37,42 @@ public final class Main {
     }
 
 
-    /**
-     * Read helper, make it faster
-     */
+    // refactor from https://github.com/Kattis/kattio/blob/master/Kattio.java
+    // url: https://raw.githubusercontent.com/Kattis/kattio/master/Kattio.java
+    // license: MIT
     private static final class Reader {
-        private final int BUFFER_SIZE = 1 << 16; //aka 65536
-        private final DataInputStream dis;
-        private final byte[] buffer;
-        private int bufferPointer, bytesRead;
-        private final int LINE_LENGTH = 1 << 6; // aka 64
+        private final BufferedReader br;
+        private StringTokenizer st;
 
-        public Reader() {
-            dis = new DataInputStream(System.in);
-            buffer = new byte[BUFFER_SIZE];
-            bufferPointer = bytesRead = 0;
+        private Reader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
         }
 
-        public Reader(String file_name) throws IOException {
-            dis = new DataInputStream(new FileInputStream(file_name));
-            buffer = new byte[BUFFER_SIZE];
-            bufferPointer = bytesRead = 0;
-        }
-
-        public String nextLine() throws IOException {
-            byte[] buf = new byte[LINE_LENGTH];
-            int cnt = 0, c;
-            while ((c = read()) != -1) {
-                if (c == '\n') {
-                    break;
-                }
-                buf[cnt++] = (byte) c;
-            }
-            return new String(buf, 0, cnt);
-        }
-
-        // this function eat the lines last '\r\n','\n'
-        // so after the after not need a readLine() to make next Readline can read a line
-        // so do nextLong,nextDouble.
-        public int nextInt() throws IOException {
-            int ret = 0;
-            byte c = read();
-            while (c <= ' ') {
-                c = read();
-            }
-            boolean neg = (c == '-');
-            if (neg) {
-                c = read();
-            }
-            do {
-                ret = ret * 10 + c - '0';
-            } while ((c = read()) >= '0' && c <= '9');
-            if (neg) {
-                return -ret;
-            }
-            return ret;
-        }
-
-        public long nextLong() throws IOException {
-            long ret = 0;
-            byte c = read();
-            while (c <= ' ') {
-                c = read();
-            }
-            boolean neg = (c == '-');
-            if (neg) {
-                c = read();
-            }
-            do {
-                ret = ret * 10 + c - '0';
-            }
-            while ((c = read()) >= '0' && c <= '9');
-            if (neg) {
-                return -ret;
-            }
-            return ret;
-        }
-
-        public double nextDouble() throws IOException {
-            double ret = 0, div = 1;
-            byte c = read();
-            while (c <= ' ') {
-                c = read();
-            }
-            boolean neg = (c == '-');
-            if (neg) {
-                c = read();
-            }
-            do {
-                ret = ret * 10 + c - '0';
-            }
-            while ((c = read()) >= '0' && c <= '9');
-            if (c == '.') {
-                while ((c = read()) >= '0' && c <= '9') {
-                    ret += (c - '0') / (div *= 10);
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-            if (neg) {
-                return -ret;
-            }
-            return ret;
+            return st.nextToken();
         }
 
-        private void fillBuffer() throws IOException {
-            bytesRead = dis.read(buffer, bufferPointer = 0, BUFFER_SIZE);
-            if (bytesRead == -1) {
-                buffer[0] = -1;
-            }
-        }
+        int nextInt() {return Integer.parseInt(next());}
 
-        private byte read() throws IOException {
-            if (bufferPointer == bytesRead) {
-                fillBuffer();
-            }
-            return buffer[bufferPointer++];
-        }
+        long nextLong() {return Long.parseLong(next());}
 
-        public void close() throws IOException {
-            if (dis == null) {
-                return;
+        double nextDouble() {return Double.parseDouble(next());}
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            dis.close();
+            return str;
         }
     }
 }

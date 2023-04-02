@@ -1,15 +1,18 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public final class Main {
     private static final List<Map.Entry<Integer, String>> spis =
-        List.of(new AbstractMap.SimpleImmutableEntry<>(2, "+---+"), new AbstractMap.SimpleImmutableEntry<>(1, "/   /|"),
-            new AbstractMap.SimpleImmutableEntry<>(0, "+---+ |"), new AbstractMap.SimpleImmutableEntry<>(0, "|   | +"),
-            new AbstractMap.SimpleImmutableEntry<>(0, "|   |/"), new AbstractMap.SimpleImmutableEntry<>(0, "+---+"));
+        List.of(new AbstractMap.SimpleImmutableEntry<>(2, "+---+")
+            , new AbstractMap.SimpleImmutableEntry<>(1, "/   /|")
+            , new AbstractMap.SimpleImmutableEntry<>(0, "+---+ |")
+            , new AbstractMap.SimpleImmutableEntry<>(0, "|   | +")
+            , new AbstractMap.SimpleImmutableEntry<>(0, "|   |/")
+            , new AbstractMap.SimpleImmutableEntry<>(0, "+---+"));
 
     public static int[][] read() {
         Scanner input = new Scanner(System.in);
@@ -25,29 +28,23 @@ public final class Main {
     }
 
     public static int[][] reader() throws IOException {
-        try (final var input = new Reader();) {
-            final int m = input.nextInt();
-            final int n = input.nextInt();
-            int[][] will_return = new int[m + 1][n + 1];
-            for (int i = 1; i <= m; i++) {
-                for (int j = 1; j <= n; j++) {
-                    will_return[i][j] = input.nextInt();
-                }
+        final var input = new Reader();
+        final int m = input.nextInt();
+        final int n = input.nextInt();
+        int[][] will_return = new int[m + 1][n + 1];
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                will_return[i][j] = input.nextInt();
             }
-            return will_return;
         }
+        return will_return;
     }
 
     public static void print(char[][] map, int a, int b) {
         for (int i = 0; i < spis.size(); i++) {
-            for (int j = 0; j < spis.get(i)
-                .getValue()
-                .length();
+            for (int j = 0; j < spis.get(i).getValue().length();
                  j++) {
-                map[a - 1 + i][b + j + spis.get(i)
-                    .getKey()] = spis.get(i)
-                    .getValue()
-                    .charAt(j);
+                map[a - 1 + i][b + j + spis.get(i).getKey()] = spis.get(i).getValue().charAt(j);
             }
         }
     }
@@ -91,115 +88,42 @@ public final class Main {
         }
     }
 
-    private static final class Reader implements AutoCloseable {
-        private final int BUFFER_SIZE = 1 << 16;
-        private final DataInputStream dis;
-        private final byte[] buffer;
-        private int bufferPointer, bytesRead;
+    // refactor from https://github.com/Kattis/kattio/blob/master/Kattio.java
+    // url: https://raw.githubusercontent.com/Kattis/kattio/master/Kattio.java
+    // license: MIT
+    private static final class Reader {
+        private final BufferedReader br;
+        private StringTokenizer st;
 
-        public Reader() {
-            dis = new DataInputStream(System.in);
-            buffer = new byte[BUFFER_SIZE];
-            bufferPointer = bytesRead = 0;
+        private Reader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
         }
 
-        public Reader(String file_name) throws IOException {
-            dis = new DataInputStream(new FileInputStream(file_name));
-            buffer = new byte[BUFFER_SIZE];
-            bufferPointer = bytesRead = 0;
-        }
-
-        public String nextLine() throws IOException {
-            byte[] buf = new byte[64]; // line length
-            int cnt = 0, c;
-            while ((c = read()) != -1) {
-                if (c == '\n') {
-                    break;
-                }
-                buf[cnt++] = (byte) c;
-            }
-            return new String(buf, 0, cnt);
-        }
-
-        // this function eat the lines last '\r\n','\n'
-        // so after the after not need a readLine() to make next Readline can read a line
-        public int nextInt() throws IOException {
-            int ret = 0;
-            byte c = read();
-            while (c <= ' ') {
-                c = read();
-            }
-            boolean neg = (c == '-');
-            if (neg) {
-                c = read();
-            }
-            do {
-                ret = ret * 10 + c - '0';
-            } while ((c = read()) >= '0' && c <= '9');
-            if (neg) {
-                return -ret;
-            }
-            return ret;
-        }
-
-        public long nextLong() throws IOException {
-            long ret = 0;
-            byte c = read();
-            while (c <= ' ') {
-                c = read();
-            }
-            boolean neg = (c == '-');
-            if (neg) {
-                c = read();
-            }
-            do {
-                ret = ret * 10 + c - '0';
-            } while ((c = read()) >= '0' && c <= '9');
-            if (neg) {
-                return -ret;
-            }
-            return ret;
-        }
-
-        public double nextDouble() throws IOException {
-            double ret = 0, div = 1;
-            byte c = read();
-            while (c <= ' ')
-                c = read();
-            boolean neg = (c == '-');
-            if (neg) {
-                c = read();
-            }
-            do {
-                ret = ret * 10 + c - '0';
-            } while ((c = read()) >= '0' && c <= '9');
-            if (c == '.') {
-                while ((c = read()) >= '0' && c <= '9') {
-                    ret += (c - '0') / (div *= 10);
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-            if (neg) {
-                return -ret;
-            }
-            return ret;
+            return st.nextToken();
         }
 
-        private void fillBuffer() throws IOException {
-            bytesRead = dis.read(buffer, bufferPointer = 0, BUFFER_SIZE);
-            if (bytesRead == -1) {
-                buffer[0] = -1;
-            }
-        }
+        int nextInt() {return Integer.parseInt(next());}
 
-        private byte read() throws IOException {
-            if (bufferPointer == bytesRead) {
-                fillBuffer();
-            }
-            return buffer[bufferPointer++];
-        }
+        long nextLong() {return Long.parseLong(next());}
 
-        public void close() throws IOException {
-            dis.close();
+        double nextDouble() {return Double.parseDouble(next());}
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
         }
     }
 }
