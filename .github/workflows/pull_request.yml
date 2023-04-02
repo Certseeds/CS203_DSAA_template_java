@@ -89,7 +89,7 @@ jobs:
           mv ./CS203_DSAA_template_java ./temp/CS203_DSAA_template_java
           mv ./temp ./CS203_DSAA_template_java
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: script_no_need
           path: CS203_DSAA_template_java

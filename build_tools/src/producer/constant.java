@@ -12,5 +12,5 @@ public enum constant {
     public static final String LAB_QUESTION_TEST_DATA_PATH = LAB_QUESTION_PATH + "resources/";
     public static final String SOURCE_FILE = LAB_QUESTION_SOURCE_PATH + "Main.java";
     public static final String TEST_FILE = LAB_QUESTION_TEST_PATH + "MainTest.java";
-    public static final String FILE_HEADER_STR = "// SPDX-License-Identifier: MIT \n";
+    public static final String FILE_HEADER_STR = "// SPDX-License-Identifier: AGPL-3.0-or-later \n";
 }

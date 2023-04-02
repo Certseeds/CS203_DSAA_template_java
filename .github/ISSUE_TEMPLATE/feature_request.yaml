@@ -1,6 +1,6 @@
 name: Feature request
 description: Create an issue that requests a feature or other improvement
-title: "[Feature-Requeest]: "
+title: "[Feature-Request]: "
 labels: ["enhancement"]
 assignees:
   - Certseeds
