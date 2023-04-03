@@ -5,18 +5,26 @@
 
     <parent>
         <groupId>nanoseeds.CS203_DSAA_template_java</groupId>
-        <artifactId>lab_example</artifactId>
+        <artifactId>2018fall</artifactId>
         <version>${revision}</version>
         <relativePath>./../pom.xml</relativePath>
     </parent>
-    <groupId>nanoseeds.CS203_DSAA_template_java.example</groupId>
-    <artifactId>lab_example_1170</artifactId>
+    <packaging>pom</packaging>
+    <groupId>nanoseeds.CS203_DSAA_template_java.2018fall</groupId>
+    <artifactId>lab_2</artifactId>
     <version>${revision}</version>
     <name>${project.groupId}.${project.artifactId}</name>
     <description>${project.groupId}.${project.artifactId}</description>
-
-    <build>
-        <sourceDirectory>${project.basedir}/src</sourceDirectory>
-        <testSourceDirectory>${project.basedir}/test</testSourceDirectory>
-    </build>
+    <modules>
+        <module>lab_2_1131</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>nanoseeds.CS203_DSAA_template_java</groupId>
+            <artifactId>test_include_package</artifactId>
+            <version>${revision}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build></build>
 </project>
