@@ -18,7 +18,7 @@ public final class Main {
     // f'(0) = -2y, 说明肯定是先减
     // f'(100) = 5*10^14 + ... - 200y(<= 2*10^12) > 0,到最后递增
     // find where f'(x) equals to 0
-    public static final class funcer {
+    private static final class funcer {
         public funcer(double y) {
             this.y = y;
         }

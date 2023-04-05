@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * this sentence make no sense, because the input `3 6 1 2 3` had a result: 0, which means the sword 3 can not get another 3 to combine into 6
  */
 public final class Main {
-    public static final class one {
+    private static final class one {
         private final List<Integer> as;
         private final int m;
 
