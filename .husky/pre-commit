@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x
+set -euox pipefail
 main() {
     ./mvnw.sh clean
     ./mvnw.sh compile
