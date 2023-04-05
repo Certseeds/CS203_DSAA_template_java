@@ -64,9 +64,9 @@ public final class Main {
     public static List<Boolean> cal(List<single> nums) {
         final List<Boolean> results = nums.stream()
             .map(one -> {
-                for (int begin = 0, end = one.deamons.size() - 1; begin < end; ) {
-                    final int mid = (end - begin) / 2 + begin;
-                    if (one.deamons.get(mid) == one.m) {
+                for (int begin = 0, end = one.deamons.size(); begin < end; ) { // range should be [first,last)
+                    final int mid = (end - begin) / 2 + begin; // no overflow
+                    if (one.deamons.get(mid) == one.m) { // match
                         return true;
                     } else if (one.deamons.get(mid) < one.m) {
                         begin = mid + 1;
