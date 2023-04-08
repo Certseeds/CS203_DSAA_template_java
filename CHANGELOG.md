@@ -1,3 +1,25 @@
+## <small>0.0.4 (2023-04-08)</small>
+
+* feat: add 2018fall_lab2_1129 020ccf6
+* feat: add lab_2_1131 and move lab_example to 2018fall subfolder 40481e2
+* feat: add lab_2_1132 32def9e
+* feat: add lab_2_1133 c7f028a
+* feat: add lab_2_1135 3d29ddb
+* feat: add lab_2_1136 fbba0f6
+* feat: bump version to v0.0.4 6e56a8e
+* feat: bump version to v0.0.4-SNAPSHOT 04ffa81
+* feat: precommit import 'set -e, set -u, set -x, set pipefail' 45250ef
+* feat: update lab_2_1134 b606f7c
+* docs: remove some repeat changelog lines e622372
+* docs: update lab_2 docs 3419129
+* build: move github-release to 'softprops/action-gh-release' f2850bc
+
+### BREAKING CHANGE
+
+* move lab_example to 2018fall submodule
+
+Signed-off-by: Certseeds <51754303+Certseeds@users.noreply.github.com>
+
 ## <small>0.0.3 (2023-04-02)</small>
 
 * feat: add example folder for real-problem 62f2a28
