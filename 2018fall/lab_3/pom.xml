@@ -17,6 +17,7 @@
     <description>${project.groupId}.${project.artifactId}</description>
     <modules>
         <module>lab_3_1138</module>
+        <module>lab_3_1140</module>
     </modules>
     <dependencies>
         <dependency>
