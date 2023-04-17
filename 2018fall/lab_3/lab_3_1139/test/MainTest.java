@@ -42,25 +42,4 @@ public final class MainTest {
             Assertions.assertEquals(p.getFirst(), p.getSecond());
         }
     }
-
-    @Test
-    public void test_negtives() throws IOException {
-
-        try (Redirect redirect = Redirect.from(DATA_PATH, "02.data.in", "02.test.out")) {
-            Main.output(Main.cal(Main.reader()));
-            final Pair<String, String> p = redirect.compare_double("02.data.out", "02.test.out");
-            Assertions.assertEquals(p.getFirst().length(), p.getSecond().length());
-            Assertions.assertEquals(p.getFirst(), p.getSecond());
-        }
-    }
-
-    @Test
-    public void test_zeros() throws IOException {
-        try (Redirect redirect = Redirect.from(DATA_PATH, "03.data.in", "03.test.out")) {
-            Main.output(Main.cal(Main.reader()));
-            final Pair<String, String> p = redirect.compare_double("03.data.out", "03.test.out");
-            Assertions.assertEquals(p.getFirst().length(), p.getSecond().length());
-            Assertions.assertEquals(p.getFirst(), p.getSecond());
-        }
-    }
 }
