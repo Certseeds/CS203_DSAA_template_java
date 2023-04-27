@@ -1,3 +1,15 @@
+## <small>0.0.5 (2023-04-27)</small>
+
+* feat: add 2018fall_lab_3 3162888
+* feat: add 2018fall_lab3_1138 9e5d719
+* feat: add 2018fall_lab3_1139 077792c
+* feat: add 2018fall_lab3_1140 1b48074
+* feat: add 2018fall_lab3_1141 ead9632
+* feat: add 2018fall_lab3_1142 da3f552
+* feat: add 2018fall_lab3_1144 7b8711e
+* feat: bump version to 0.0.5-SNAPSHOT b68eef6
+* feat: update 2018fall_lab3_1143 and 2018fall_lab3's conclusion 4df0309
+
 ## <small>0.0.4 (2023-04-08)</small>
 
 * feat: add 2018fall_lab2_1129 020ccf6
@@ -6,7 +18,7 @@
 * feat: add lab_2_1133 c7f028a
 * feat: add lab_2_1135 3d29ddb
 * feat: add lab_2_1136 fbba0f6
-* feat: bump version to v0.0.4 6e56a8e
+* feat: bump version to v0.0.4 cf0e125
 * feat: bump version to v0.0.4-SNAPSHOT 04ffa81
 * feat: precommit import 'set -e, set -u, set -x, set pipefail' 45250ef
 * feat: update lab_2_1134 b606f7c
